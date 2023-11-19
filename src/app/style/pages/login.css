@@ -1,0 +1,50 @@
+.log-header{
+    width: 100%;
+}
+.reg-header-login{
+    margin-bottom: 40px;
+}
+.haveLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    border: 1px solid #DBDBDB;
+    text-align: center;
+}
+.haveLogin button{
+    background-color: transparent;
+    border: none;
+    color: #0095F6;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: -5px;
+}
+.log-btn{
+    width: 100%;
+}
+.phone{
+    margin-right: 20px;
+}
+.log-header{
+    max-width: 268px;
+    margin-top: 20px;
+}
+.log-fb h2{
+    font-size: 14px;
+    color: #385185;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.forgot-password{
+    margin: 20px 0;
+}
+.forgot-password button{
+    border: none;
+    background: transparent;
+    color:#00376B;
+    font-size: 12px;
+    font-weight: 400;
+}

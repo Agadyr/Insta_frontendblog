@@ -44,3 +44,24 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button{
+	cursor: pointer;
+}
+img{
+	object-fit: cover;
+}
+.df{
+	display: flex;
+}
+.jcsb{
+	justify-content: space-between;
+}
+.jcc{
+	justify-content: center;
+}
+.m0{
+	margin: 0 auto;
+}
+.aic{
+	align-items: center;
+}

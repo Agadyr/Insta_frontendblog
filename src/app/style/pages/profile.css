@@ -1,0 +1,188 @@
+.header-search-icon{
+    width: 22px;
+    height: 22px;
+    color: #8E8E8E;
+}
+.header-input input{
+    outline: none;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 3px;
+    border: 1px solid #DBDBDB;
+    font-size: 12px;
+}
+
+.header-input {
+    position: relative;
+}
+.search-icon-container {
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.header-search-icon {
+    max-width: 9px;
+}
+.headerofProfile{
+    margin-top: 20px;
+}
+#imageprofile{
+    border-radius: 50%;
+    max-width: 22px;
+}
+#userphoto{
+    width:150px;
+    border-radius: 50%;
+}
+
+.line {
+    border: 1px solid #000;
+    min-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30vh;
+    border-color: #DBDBDB; 
+}
+
+
+
+
+.aboutuser{
+    justify-content: center;
+    width: 70%;
+    margin-top: 15px;
+}
+.stateuser{
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.name{
+    gap: 20px;
+}
+.name h3{
+    font-size: 28px;
+    font-weight: 350;
+}
+.follow-btn{
+    gap:15px;
+}
+.btn-f{
+    padding: 6px 18px;
+    border-radius:4px;
+}
+.More{
+    border: none;
+    background: transparent;
+    margin-left: -12px;
+}
+.states-item{
+    margin: 15px 20px 15px 0;
+
+}
+h2{
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+
+.posts{
+    position: relative;
+}
+.posts-hr::before{
+    content: "";
+    border-top: 1px solid #000;
+    position: absolute;
+    top: 0;
+    width: 100px;
+}
+.posts-hr{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+.posts-img{
+    margin-top: 10px;
+    gap: 10px;
+}
+.posts-img h3{
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.posts{
+    max-width: 100%;
+    max-height: 100%;
+}
+.posts-images{
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.posts-images img{
+    margin-top: 20px;
+    width: calc(33.33% - 10px);
+    height: 293px;
+}
+
+
+
+@media (max-width:933px) {
+    .posts-images{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 10px), 1fr));
+        gap: 10px;
+        margin: 0 auto;
+    }
+    .posts-images img{
+        width: 100%;
+        max-height: 300px;
+        height: 100%;
+    }
+}
+@media (max-width:800px) {
+    .header-search, .header-navigation{
+        display: none;
+    }
+    .aboutuser{
+        width: 100%;
+        flex-direction: column;
+        align-items: left;
+        margin-left: 15px;
+    }
+    .userprofilephoto{
+        width: 100%;
+    }
+    .stateuser{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .follow-btn{
+        width: 100%;
+    }
+    .name{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .name h3{
+        width: 100%;
+    }
+    #userphoto{
+        width: 80px;
+        height: 80px;
+    }
+    .posts-hr{
+        width: 40%;
+    }
+    .line{
+        margin-top: 10vh;
+    }
+}

@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('style/pages/registration.css');
 @import url('style/vendor/reset.css');
 @import url('style/components/footer.css');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('style/pages/profile.css');
+@import url('style/pages/login.css');
+@import url('style/components/icons.css');
+@import url('style/vendor/same.css');
+@import url("style/components/navmenu.css");

@@ -2,7 +2,6 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/globals.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 /*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/pages/registration.css ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************/
@@ -26,7 +25,7 @@
 }
 .reg-header{
     max-width:268px;
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,17 +50,18 @@
     border: none;
     color: #fff;
 }
-.Line {
+.Linefor {
     display:flex;
     text-align: center;
     align-items: center;
+    margin: 8px 0;
 }
-.Line h2{
+.Linefor h2{
     color: #737373;
     font-weight: 500;
 }
   
-.line {
+.linefor {
     width: 115px; 
     border-top: 0.5px solid black; 
     margin: 0 9px; 
@@ -71,13 +71,15 @@
     width: 268px;
 }
 .regForm input{
+    background-color: #FAFAFA;
     border-radius:3px ;
     border: 1px solid #DBDBDB;
     outline: none;
     width: 100%;
-    padding: 7px 0px 7px 7px;
+    padding: 10px 0px 10px 10px;
     margin-top: 7px;
     box-sizing: border-box;
+    font-size: 12px;
 
 }
 .rules{
@@ -105,21 +107,6 @@
     box-sizing: border-box;
     font-weight: 600;
 }
-.haveLogin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    margin-top: 10px;
-    border: 1px solid #DBDBDB;
-    text-align: center;
-}
-.haveLogin a{
-    text-decoration: none;
-    color: #0095F6;
-    font-size: 14px;
-}
 .haveLogin p{
     color: #737373;
     font-size: 14px;
@@ -136,6 +123,11 @@
 }
 .InApps img{
     margin-right: 5px;
+}
+@media (max-width:780px) {
+    .phone{
+        display: none;
+    }
 }
 /*!****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/vendor/reset.css ***!
@@ -186,6 +178,27 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button{
+	cursor: pointer;
+}
+img{
+	object-fit: cover;
+}
+.df{
+	display: flex;
+}
+.jcsb{
+	justify-content: space-between;
+}
+.jcc{
+	justify-content: center;
+}
+.m0{
+	margin: 0 auto;
+}
+.aic{
+	align-items: center;
+}
 /*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/components/footer.css ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************/
@@ -194,6 +207,7 @@ table {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 40px;
 }
 
 .footer-top{
@@ -201,6 +215,7 @@ table {
     display: flex;
     align-items: center;
     gap: 20px;
+    max-width: 100%;
 }
 .footer a{
     display: block;
@@ -215,4 +230,315 @@ table {
     align-items: center;
     gap: 20px;
 
+}
+@media (max-width:941px) {
+    .footer a{
+        font-size: 10px;
+    }
+}
+@media (max-width:733px) {
+    .footer-top a{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .footer-top{
+        flex-wrap: wrap;
+        text-align: center;
+    }
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/pages/profile.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+.header-search-icon{
+    width: 22px;
+    height: 22px;
+    color: #8E8E8E;
+}
+.header-input input{
+    outline: none;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 3px;
+    border: 1px solid #DBDBDB;
+    font-size: 12px;
+}
+
+.header-input {
+    position: relative;
+}
+.search-icon-container {
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.header-search-icon {
+    max-width: 9px;
+}
+.headerofProfile{
+    margin-top: 20px;
+}
+#imageprofile{
+    border-radius: 50%;
+    max-width: 22px;
+}
+#userphoto{
+    width:150px;
+    border-radius: 50%;
+}
+
+.line {
+    border: 1px solid #000;
+    min-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30vh;
+    border-color: #DBDBDB; 
+}
+
+
+
+
+.aboutuser{
+    justify-content: center;
+    width: 70%;
+    margin-top: 15px;
+}
+.stateuser{
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.name{
+    gap: 20px;
+}
+.name h3{
+    font-size: 28px;
+    font-weight: 350;
+}
+.follow-btn{
+    gap:15px;
+}
+.btn-f{
+    padding: 6px 18px;
+    border-radius:4px;
+}
+.More{
+    border: none;
+    background: transparent;
+    margin-left: -12px;
+}
+.states-item{
+    margin: 15px 20px 15px 0;
+
+}
+h2{
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+
+.posts{
+    position: relative;
+}
+.posts-hr::before{
+    content: "";
+    border-top: 1px solid #000;
+    position: absolute;
+    top: 0;
+    width: 100px;
+}
+.posts-hr{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+.posts-img{
+    margin-top: 10px;
+    gap: 10px;
+}
+.posts-img h3{
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.posts{
+    max-width: 100%;
+    max-height: 100%;
+}
+.posts-images{
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.posts-images img{
+    margin-top: 20px;
+    width: calc(33.33% - 10px);
+    height: 293px;
+}
+
+
+
+@media (max-width:933px) {
+    .posts-images{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 10px), 1fr));
+        grid-gap: 10px;
+        gap: 10px;
+        margin: 0 auto;
+    }
+    .posts-images img{
+        width: 100%;
+        max-height: 300px;
+        height: 100%;
+    }
+}
+@media (max-width:800px) {
+    .header-search, .header-navigation{
+        display: none;
+    }
+    .aboutuser{
+        width: 100%;
+        flex-direction: column;
+        align-items: left;
+        margin-left: 15px;
+    }
+    .userprofilephoto{
+        width: 100%;
+    }
+    .stateuser{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .follow-btn{
+        width: 100%;
+    }
+    .name{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .name h3{
+        width: 100%;
+    }
+    #userphoto{
+        width: 80px;
+        height: 80px;
+    }
+    .posts-hr{
+        width: 40%;
+    }
+    .line{
+        margin-top: 10vh;
+    }
+}
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/pages/login.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.log-header{
+    width: 100%;
+}
+.reg-header-login{
+    margin-bottom: 40px;
+}
+.haveLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    border: 1px solid #DBDBDB;
+    text-align: center;
+}
+.haveLogin button{
+    background-color: transparent;
+    border: none;
+    color: #0095F6;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: -5px;
+}
+.log-btn{
+    width: 100%;
+}
+.phone{
+    margin-right: 20px;
+}
+.log-header{
+    max-width: 268px;
+    margin-top: 20px;
+}
+.log-fb h2{
+    font-size: 14px;
+    color: #385185;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.forgot-password{
+    margin: 20px 0;
+}
+.forgot-password button{
+    border: none;
+    background: transparent;
+    color:#00376B;
+    font-size: 12px;
+    font-weight: 400;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/components/icons.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+
+.icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+}
+.icon:hover{
+    transition: .4s;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.ins-prof-logo{
+    width: 103px;
+    height: 29px;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/vendor/same.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.container{
+    max-width: 950px;
+    height: auto;    
+    margin: 0 auto;
+}
+
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[12].use[3]!./src/app/style/components/navmenu.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+.nav-menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width:950px;
+    width: 100%;
+    height: 40px;
+    background-color:white;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px 4px 4px 4px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    display: none;
+}
+@media (max-width:800px) {
+    .nav-menu{
+        display: flex;
+    }
 }

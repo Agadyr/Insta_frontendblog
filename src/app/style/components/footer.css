@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin-top: 40px;
 }
 
 .footer-top{
@@ -10,6 +11,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    max-width: 100%;
 }
 .footer a{
     display: block;
@@ -24,4 +26,19 @@
     align-items: center;
     gap: 20px;
 
+}
+@media (max-width:941px) {
+    .footer a{
+        font-size: 10px;
+    }
+}
+@media (max-width:733px) {
+    .footer-top a{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .footer-top{
+        flex-wrap: wrap;
+        text-align: center;
+    }
 }
