@@ -14,13 +14,13 @@
     border: 1px solid #DBDBDB;
     text-align: center;
 }
-.haveLogin button{
+.haveLogin a{
     background-color: transparent;
     border: none;
     color: #0095F6;
     font-size: 14px;
     cursor: pointer;
-    margin-left: -5px;
+    text-decoration: none;
 }
 .log-btn{
     width: 100%;

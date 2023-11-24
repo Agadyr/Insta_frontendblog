@@ -1,5 +1,7 @@
+'use client'
 import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
+
 export default function UserProfile(){
     let posts = [
         {
