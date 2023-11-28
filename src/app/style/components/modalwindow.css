@@ -49,9 +49,25 @@
     font-size: 20px;
 }
 .selectimage-btn{
-    padding: 7px 15px;
+    border-radius: 7px;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    z-index: 999;
+}
+.btn-upload{
+    position: relative;
+    padding: 8px 17px;
     border-radius: 7px;
     font-weight: 600;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; */
 }
 
 
@@ -88,7 +104,8 @@
     cursor: pointer;
 }
 .image-from-modal{
-    width: 60%;
+    width: 50%;
+    height: 100%;
     box-sizing: border-box;
 
 }
@@ -102,6 +119,7 @@
 .all-img{
     display: flex;
     width: 100%;
+    height: 444px;
 }
 
 .right-filters{

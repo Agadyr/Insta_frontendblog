@@ -1,11 +1,12 @@
 'use client'
+import ModalWindow from "@/components/modalwindow"
 import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
-
+import User from "@/components/user";
 export default function UserProfile(){
-    let posts = [
+    let user  = [
         {
-            imageprofile:"posts/userphoto.jpg",
+            imageprofile:"posts/1.png",
             username:"Michael",
             stats:{
                 posts:1258,
@@ -13,22 +14,54 @@ export default function UserProfile(){
                 following:1250
             },
             bio:"Madi Kairambekov",
-            userposts:{
-                postimage1:"/posts/1.png",
-                postimage2:"/posts/2.png",
-                postimage3:"/posts/3.png",
-                postimage4:"/posts/4.png",
-                postimage5:"/posts/5.png",
-                postimage6:"/posts/6.png",
-                postimage7:"/posts/nurali.jpg",
-                postimage8:"/posts/michael.jpg",
-                postimage9:"/posts/daryn.jpg",
-            }
         }
     ]
+    let posts = [
+
+            { 
+            id:1,
+            postimage:"/posts/1.png"
+            },
+            {
+            id:3,
+            postimage:"/posts/2.png"
+            },
+            {
+            id:3,                
+            postimage:"/posts/3.png"
+            },       
+            {
+            id:4,    
+            postimage:"/posts/4.png"
+            },
+            {
+            id:5,    
+            postimage:"/posts/5.png"
+            },
+            {
+            id:6,    
+            postimage:"/posts/6.png"
+            },
+            {
+            id:7,    
+            postimage:"/posts/nurali.jpg"
+            },
+            {
+            id:8,    
+            postimage:"/posts/michael.jpg"
+            },
+            {
+            id:9,    
+            postimage:"/posts/daryn.jpg"
+            }
+    ]
+    function SelectPost(){
+        const id = 1;
+    }
     return(
         <div>
-            <Posts posts={posts}/>
+            <User user={user} posts={posts}/>
+            <Posts posts={posts} SelectPost={SelectPost}/>
             <Footer/>
         </div>
 

@@ -30,7 +30,8 @@
 }
 #imageprofile{
     border-radius: 50%;
-    max-width: 22px;
+    width: 30px;
+    height: 30px;
 }
 #userphoto{
     width:150px;
@@ -130,7 +131,6 @@ h2{
     width: calc(33.33% - 10px);
     height: 293px;
 }
-
 
 
 @media (max-width:933px) {
