@@ -2,17 +2,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
-export default function SelectPost({closeModal,ShowPostUser}){
-    
-    const handleClose = () => {
-        closeModal();
-    };
+export default function SelectPost({posts,step,closeModal}){
+    const ShowPostUser = posts.map(item => item)
+    const PostStep = step
+    console.log(PostStep);
     return(
-        <div className="main-window" style={{zIndex:10}}>
-            <FontAwesomeIcon icon={faClose} className="close" onClick={handleClose}/>
+        <div>
+           <div className="main-window" style={{zIndex:10}}>
+            <FontAwesomeIcon icon={faClose} className="close" onClick={() => closeModal(1)}/>
             <div className="Modal-select-window">
                 <div className="left-modal-window">
-                    <img src={ShowPostUser[1].postimage} alt="" />
+                   <img src={posts[PostStep-1].postimage} alt="" />
                 </div>
                 <div className="right-modal-window">
                     <div className="header-right-modal">
@@ -74,5 +74,7 @@ export default function SelectPost({closeModal,ShowPostUser}){
                     </div>
                 </div>
             </div>
+            </div>
         </div>
+
 )}

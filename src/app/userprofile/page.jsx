@@ -1,8 +1,10 @@
 'use client'
 import ModalWindow from "@/components/modalwindow"
+import SelectPostById from "@/components/SelectPostById";
 import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
 import User from "@/components/user";
+import { useState } from "react";
 export default function UserProfile(){
     let user  = [
         {
@@ -23,7 +25,7 @@ export default function UserProfile(){
             postimage:"/posts/1.png"
             },
             {
-            id:3,
+            id:2,
             postimage:"/posts/2.png"
             },
             {
@@ -55,13 +57,22 @@ export default function UserProfile(){
             postimage:"/posts/daryn.jpg"
             }
     ]
-    function SelectPost(){
-        const id = 1;
+    
+    const[step,Setstep] = useState()
+    const[uploadphoto,Setuploadphoto] = useState(3)
+    function SelectPost(id){
+        Setstep(id);
     }
+    const closeModal = () => {
+        Setstep(0)
+        Setuploadphoto(1)
+    };
     return(
         <div>
-            <User user={user} posts={posts}/>
-            <Posts posts={posts} SelectPost={SelectPost}/>
+            {uploadphoto == 2 && <ModalWindow closeModal={closeModal} />}
+            {step >= 1 && <SelectPostById posts={posts} step={step} closeModal={closeModal}/>}
+            <User Poststep={step} user={user} posts={posts} Setuploadphoto={Setuploadphoto}/>
+            <Posts posts={posts} SelectPosts={SelectPost}/>
             <Footer/>
         </div>
 

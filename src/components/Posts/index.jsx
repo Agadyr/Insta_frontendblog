@@ -1,9 +1,11 @@
+'use client'
 import Post from "./Post"
-export default function Posts({posts,SelectPost}){
-    function SelectPosts(){
-        SelectPost()
+import { useState } from "react";
+export default function Posts({posts,SelectPosts}){
+    function SelectPost(id){
+        SelectPosts(id);
     }
-    const showposts = posts.map(item =>(<Post item={item} SelectPost={SelectPosts}/>))
+    const showposts = posts.map(item =>(<Post item={item} SelectPost={SelectPost}/>))
     return(
         <div className="container">
             <div className="posts">

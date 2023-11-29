@@ -18,10 +18,8 @@ export default function ModalWindow({closeModal}){
   };
 
     const [step, setstep] = useState(1)
-
-
     const handleClose = () => {
-        closeModal();
+        closeModal(1);
       };
     const [countValue , SetCountValue] = useState('')
 
