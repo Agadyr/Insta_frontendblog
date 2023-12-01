@@ -10,7 +10,14 @@ import { useState } from "react"
 export default function SelectPost({posts,step,closeModal,addCommentsToPost,AllComments,Removecomment}){
     const ShowPostUser = posts.map(item => item)
     const [inputvalue,Setinputvalue] = useState('')
+    const [RemoveModal,SetRemoveModal] = useState(0)
+    const [ValueofComment,SetValueofComment] = useState({})
     const PostStep = step
+    const DeleteCommentFromModal = (item) =>{
+        SetValueofComment(item)
+        
+        SetRemoveModal(1)
+    }
     const Change = (e) =>{
         Setinputvalue(e.target.value)
     }
@@ -22,8 +29,7 @@ export default function SelectPost({posts,step,closeModal,addCommentsToPost,AllC
         addCommentsToPost(comments)
         Setinputvalue('')
     }
-    const [RemoveModal,SetRemoveModal] = useState(1)
-    console.log(AllComments);
+
     return(
         <div>
             
@@ -33,7 +39,7 @@ export default function SelectPost({posts,step,closeModal,addCommentsToPost,AllC
             {RemoveModal == 1 && <div className="remove-modal">
                 <div className="rm-buttons">
                     <button className="removes">Report</button>
-                    <button className="removes"  onClick={() => Removecomment()}>Delete</button>
+                    <button className="removes"  onClick={() => {Removecomment(ValueofComment);SetRemoveModal(0);}}>Delete</button>
                     <button className="removes" onClick={() => SetRemoveModal(0)}>Cansel</button>
                 </div>
             </div>}
@@ -70,7 +76,7 @@ export default function SelectPost({posts,step,closeModal,addCommentsToPost,AllC
                                 <div className="comments">
                                     <h3>Senalov.kz</h3>
                                     <p>{item.inputvalue}</p>
-                                    <button className="btn rm-button" onClick={() => Removecomment(item)}>Удалить</button>
+                                    <button className="btn rm-button" onClick={() => DeleteCommentFromModal(item)}>Удалить</button>
                                     <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />
                                 </div>
 

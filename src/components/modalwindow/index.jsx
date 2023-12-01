@@ -62,7 +62,7 @@ export default function ModalWindow({closeModal}){
                 <div className="header-filters df jcsb aic">
                     <svg onClick={() => setstep(2)} aria-label="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polyline></svg>
                     <h1>Create New Post</h1>
-                    <h2>Share</h2>
+                    <h2 onClick={() => handleClose()}>Share</h2>
                 </div>
                 <div className="all-img">
                     <div className="image-from-modal">
