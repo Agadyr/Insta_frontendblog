@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import User from "@/components/user";
 import { useState } from "react";
 export default function UserProfile(){
+    const [AllComments,SetAllComments] = useState([])
     let user  = [
         {
             imageprofile:"posts/1.png",
@@ -57,7 +58,15 @@ export default function UserProfile(){
             postimage:"/posts/daryn.jpg"
             }
     ]
-    
+    const addCommentsToPost = (item) =>{
+        SetAllComments([...AllComments,item])
+    }
+    const Removecomment = (comment) =>{
+        let Rm = [...AllComments]
+        let index = AllComments.indexOf(comment)
+        Rm.splice(index,1)
+        SetAllComments(Rm)
+    }
     const[step,Setstep] = useState()
     const[uploadphoto,Setuploadphoto] = useState(3)
     function SelectPost(id){
@@ -70,7 +79,7 @@ export default function UserProfile(){
     return(
         <div>
             {uploadphoto == 2 && <ModalWindow closeModal={closeModal} />}
-            {step >= 1 && <SelectPostById posts={posts} step={step} closeModal={closeModal}/>}
+            {step >= 1 && <SelectPostById posts={posts} step={step} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
             <User Poststep={step} user={user} posts={posts} Setuploadphoto={Setuploadphoto}/>
             <Posts posts={posts} SelectPosts={SelectPost}/>
             <Footer/>

@@ -2,15 +2,12 @@
 import Post from "./Post"
 import { useState } from "react";
 export default function Posts({posts,SelectPosts}){
-    function SelectPost(id){
-        SelectPosts(id);
-    }
-    const showposts = posts.map(item =>(<Post item={item} SelectPost={SelectPost}/>))
+    const showposts = posts.map(item =>(<Post item={item} SelectPost={SelectPosts}/>))
     return(
         <div className="container">
             <div className="posts">
                 <div className="posts-images">
-                        {showposts}
+                    {showposts}
                 </div>
             </div>
         </div>
