@@ -4,60 +4,92 @@ import SelectPostById from "@/components/SelectPostById";
 import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
 import User from "@/components/user";
+import Users from "@/components/users";
 import { useState } from "react";
 export default function UserProfile(){
-    const [AllComments,SetAllComments] = useState([])
+    let followers = [
+        {
+            url:"posts/1.png",
+            nick_name:"Michael",
+            bio:"Study in Decode",
+        },
+        {
+            url:"posts/2.png",
+            nick_name:"Erasyl",
+            bio:"Study in Decode",
+        },
+        {
+            url:"posts/3.png",
+            nick_name:"Nuralu",
+            bio:"Study in JustCode",
+        },
+        {
+            url:"posts/4.png",
+            nick_name:"Daniyar",
+            bio:"Don't Study",
+        },
+        {
+            url:"posts/4.png",
+            nick_name:"Daniyar",
+            bio:"Don't Study",
+        }
+        
+        
+    ]
+    let posts = [
+
+        { 
+        id:1,
+        postimage:"/posts/1.png"
+        },
+        {
+        id:2,
+        postimage:"/posts/2.png"
+        },
+        {
+        id:3,                
+        postimage:"/posts/3.png"
+        },       
+        {
+        id:4,    
+        postimage:"/posts/4.png"
+        },
+        {
+        id:5,    
+        postimage:"/posts/5.png"
+        },
+        {
+        id:6,    
+        postimage:"/posts/6.png"
+        },
+        {
+        id:7,    
+        postimage:"/posts/nurali.jpg"
+        },
+        {
+        id:8,    
+        postimage:"/posts/michael.jpg"
+        },
+        {
+        id:9,    
+        postimage:"/posts/daryn.jpg"
+        }
+        
+    ]
     let user  = [
         {
             imageprofile:"posts/1.png",
             username:"Michael",
             stats:{
-                posts:1258,
-                followers:4,
+                posts:posts.length,
+                followers:followers.length,
                 following:1250
             },
             bio:"Madi Kairambekov",
         }
     ]
-    let posts = [
-
-            { 
-            id:1,
-            postimage:"/posts/1.png"
-            },
-            {
-            id:2,
-            postimage:"/posts/2.png"
-            },
-            {
-            id:3,                
-            postimage:"/posts/3.png"
-            },       
-            {
-            id:4,    
-            postimage:"/posts/4.png"
-            },
-            {
-            id:5,    
-            postimage:"/posts/5.png"
-            },
-            {
-            id:6,    
-            postimage:"/posts/6.png"
-            },
-            {
-            id:7,    
-            postimage:"/posts/nurali.jpg"
-            },
-            {
-            id:8,    
-            postimage:"/posts/michael.jpg"
-            },
-            {
-            id:9,    
-            postimage:"/posts/daryn.jpg"
-            }
-    ]
+    const [AllComments,SetAllComments] = useState([])
+    const [AllFollowers,SetAllFollowers] = useState(followers)
     const addCommentsToPost = (item) =>{
         SetAllComments([...AllComments,item])
     }
@@ -67,21 +99,28 @@ export default function UserProfile(){
         Rm.splice(index,1)
         SetAllComments(Rm)
     }
-    const[step,Setstep] = useState()
-    const[uploadphoto,Setuploadphoto] = useState(3)
-    function SelectPost(id){
-        Setstep(id);
+    const Removefollower = (follower) =>{
+        let Rm = [...AllFollowers]
+        let index = AllFollowers.indexOf(follower)
+        Rm.splice(index,1)
+        SetAllFollowers(Rm)
+    }
+    const[imageID,SetimageID] = useState()
+    const[StepOfModalWindow,SetStepOfModalWindow] = useState(1)
+    function SelectAllPostsByID(id){
+        SetimageID(id);
     }
     const closeModal = () => {
-        Setstep(0)
-        Setuploadphoto(1)
+        SetimageID(0)
+        SetStepOfModalWindow(1)
     };
     return(
         <div>
-            {uploadphoto == 2 && <ModalWindow closeModal={closeModal} />}
-            {step >= 1 && <SelectPostById posts={posts} step={step} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
-            <User Poststep={step} user={user} posts={posts} Setuploadphoto={Setuploadphoto}/>
-            <Posts posts={posts} SelectPosts={SelectPost}/>
+            {StepOfModalWindow == 2 && <ModalWindow closeModal={closeModal} />}
+            {imageID >= 1 && <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
+            {StepOfModalWindow == 3 && <Users closeModal={closeModal} followers={AllFollowers} Removefollower={Removefollower}/>}
+            <User  user={user} Setuploadphoto={SetStepOfModalWindow} />
+            <Posts posts={posts} SelectPosts={SelectAllPostsByID}/>
             <Footer/>
         </div>
 

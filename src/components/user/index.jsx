@@ -6,7 +6,7 @@ import { faSquarePlus } from "@fortawesome/free-solid-svg-icons"
 import { faCompass } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
-export default function User({user,posts,Setuploadphoto}){
+export default function User({user,Setuploadphoto}){
     const ShowUser = user.map(item => item)
     return(
         <div className="container">
@@ -55,8 +55,8 @@ export default function User({user,posts,Setuploadphoto}){
                         </div>
                         <div className="states df">
                             <div className="states-item df"><h2>{ShowUser[0].stats.posts} </h2>posts</div>
-                            <div className="states-item df"><h2>{ShowUser[0].stats.followers}</h2>followers</div>
-                            <div className="states-item df"><h2>{ShowUser[0].stats.following} </h2>following</div>
+                            <div className="states-item df" onClick={() => Setuploadphoto(3)}><h2>{ShowUser[0].stats.followers}</h2>followers</div>
+                            <div className="states-item df" onClick={() => Setuploadphoto(4)}><h2>{ShowUser[0].stats.following} </h2>following</div>
                         </div>
                         <div className="bio">
                             <h2>{ShowUser[0].bio}</h2>

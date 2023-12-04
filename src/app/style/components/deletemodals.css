@@ -1,0 +1,101 @@
+.rm-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 20%;
+    
+}
+.removes:first-child{
+    border-radius: 13px 13px 0 0;
+}
+.removes:last-child{
+    border-radius:  0 0 13px 13px;
+    color: black;
+    font-weight: normal;
+}
+.removes{
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    border: none;
+    color: red;
+    font-weight: 600;
+    border-bottom: 1px solid #b8b8b86c;
+    background-color: #fff;
+}
+
+/* .remove-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    max-height:48%;
+    height: 100%;
+    border-radius: 13px;
+    padding: 15px 0 15px 15px;
+    width: 26%;
+    position: relative;
+    z-index: 1;
+} */
+.remove-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(9, 9, 9, 0.333);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+}
+.remove-follower-modal{
+    background-color: #fff;
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 26%;
+    min-width: 24%;
+    width: 100%;
+    min-height: 40%;
+    height: max-content;
+    gap: 18px;
+}
+.remove-follower-modal img{
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.remove-follower-modal h1{
+    font-weight:600;
+    font-size: 25px;
+}
+.remove-follower-modal p{
+    text-align: center;
+    color: #737373;
+    font-weight: 300;
+    padding: 0 10px;
+}
+.RemoveOrCansel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.RemoveOrCansel button{
+    background: transparent;
+    border: none;
+}
+.removebtn{
+    font-weight: 600;
+    color: red;
+}
+.rm-button{
+    margin-right: 10px;
+    background: transparent;
+    color: #b8b8b8;
+    display: flex;
+    justify-content: space-between;
+}   

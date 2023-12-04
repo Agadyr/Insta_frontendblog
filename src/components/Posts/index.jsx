@@ -1,6 +1,5 @@
 'use client'
 import Post from "./Post"
-import { useState } from "react";
 export default function Posts({posts,SelectPosts}){
     const showposts = posts.map(item =>(<Post item={item} SelectPost={SelectPosts}/>))
     return(
