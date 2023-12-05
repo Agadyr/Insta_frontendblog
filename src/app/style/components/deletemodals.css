@@ -99,3 +99,6 @@
     display: flex;
     justify-content: space-between;
 }   
+.remove-following-modal{
+    min-height: 35%;
+}

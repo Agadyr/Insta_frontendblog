@@ -6,7 +6,47 @@ import Footer from '@/components/footer';
 import User from "@/components/user";
 import Users from "@/components/users";
 import { useState } from "react";
+import Following from "@/components/users/following";
 export default function UserProfile(){
+    let following = [
+        {
+            url:"posts/6.png",
+            nick_name:"Michael",
+            bio:"Study in Decode",
+        },
+        {
+            url:"posts/5.png",
+            nick_name:"Erasyl",
+            bio:"Study in Decode",
+        },
+        {
+            url:"posts/1.png",
+            nick_name:"Nuralu",
+            bio:"Study in JustCode",
+        },
+        {
+            url:"posts/daryn.jpg",
+            nick_name:"Tima",
+            bio:"SPORT",
+        },
+        {
+            url:"posts/4.png",
+            nick_name:"Abylll",
+            bio:"FOOTBALLLLL;LL",
+        }
+        ,
+        {
+            url:"posts/michael.jpg",
+            nick_name:"Madi",
+            bio:"programmer",
+        }
+        ,
+        {
+            url:"posts/daryn.jpg",
+            nick_name:"Daniyar",
+            bio:"Don't Study",
+        }
+    ]
     let followers = [
         {
             url:"posts/1.png",
@@ -83,13 +123,14 @@ export default function UserProfile(){
             stats:{
                 posts:posts.length,
                 followers:followers.length,
-                following:1250
+                following:following.length
             },
             bio:"Madi Kairambekov",
         }
     ]
     const [AllComments,SetAllComments] = useState([])
     const [AllFollowers,SetAllFollowers] = useState(followers)
+    const [AllFollowing,SetAllFollowing] = useState(following)
     const addCommentsToPost = (item) =>{
         SetAllComments([...AllComments,item])
     }
@@ -105,22 +146,30 @@ export default function UserProfile(){
         Rm.splice(index,1)
         SetAllFollowers(Rm)
     }
+    const Stopfollowing = (following) =>{
+        let Rm = [...AllFollowing]
+        let index = AllFollowing.indexOf(following)
+        Rm.splice(index,1)
+        SetAllFollowing(Rm)
+    }
     const[imageID,SetimageID] = useState()
     const[StepOfModalWindow,SetStepOfModalWindow] = useState(1)
-    function SelectAllPostsByID(id){
-        SetimageID(id);
-    }
     const closeModal = () => {
         SetimageID(0)
         SetStepOfModalWindow(1)
     };
     return(
         <div>
-            {StepOfModalWindow == 2 && <ModalWindow closeModal={closeModal} />}
-            {imageID >= 1 && <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
-            {StepOfModalWindow == 3 && <Users closeModal={closeModal} followers={AllFollowers} Removefollower={Removefollower}/>}
-            <User  user={user} Setuploadphoto={SetStepOfModalWindow} />
-            <Posts posts={posts} SelectPosts={SelectAllPostsByID}/>
+            {StepOfModalWindow == 3 &&  
+                <ModalWindow closeModal={closeModal} />}
+            {imageID >= 1 && 
+                <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
+            {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 
+                <Users closeModal={closeModal} followers={AllFollowers} following={AllFollowing} Removefollower={Removefollower} Setmodalwindows={StepOfModalWindow} Stopfollowing={Stopfollowing} />}
+            
+            
+            <User  user={user} Setmodalwindows={SetStepOfModalWindow} />
+            <Posts posts={posts} SelectPosts={SetimageID}/>
             <Footer/>
         </div>
 
