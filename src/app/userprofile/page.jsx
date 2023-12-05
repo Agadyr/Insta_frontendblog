@@ -6,7 +6,6 @@ import Footer from '@/components/footer';
 import User from "@/components/user";
 import Users from "@/components/users";
 import { useState } from "react";
-import Following from "@/components/users/following";
 export default function UserProfile(){
     let following = [
         {
@@ -84,7 +83,7 @@ export default function UserProfile(){
         },
         {
         id:2,
-        postimage:"/posts/2.png"
+        postimage:"/posts/5.png"
         },
         {
         id:3,                

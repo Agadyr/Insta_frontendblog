@@ -26,7 +26,7 @@ export default function Following({closeModal,following,Stopfollowing}){
                         <div className="RemoveOrCansel">
                             <div className="hr">
                             </div>
-                            <button className="removebtn" onClick={() => {Stopfollowing(ForStopFollow),Setremovestep(0)}}>Unfollow</button>
+                            <button className="removebtn" onClick={() => {Stopfollowing(ForStopFollow),Setremovestep(0),Setinputvalue('')}}>Unfollow</button>
                             <div className="hr">
                             </div>
                             <button onClick={() => Setremovestep(0)}>Cansel</button>
@@ -40,7 +40,7 @@ export default function Following({closeModal,following,Stopfollowing}){
                         <div className="hr">
                         </div>
                         <div className="header-input follower-input">
-                            <input type="text" placeholder="Search" onChange={onChange} />
+                            <input type="text" placeholder="Search" onChange={onChange} value={inputvalue} />
                             <div className="search-icon">
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className="header-search" />
                             </div>
@@ -57,7 +57,7 @@ export default function Following({closeModal,following,Stopfollowing}){
                                     <h3>{Follower.bio}</h3>
                                 </div>
                             </div>
-                            <button className="remove-follower">Remove</button>
+                            <button className="remove-follower" onClick={() => {SetForStopFollow(Follower),Setremovestep(1)}}>Following</button>
                         </div>))}
                         {(filteredFollowing.length == 0 && inputvalue.length >= 1) &&
                         <div className="followersOFUser df jcsb aic">

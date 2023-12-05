@@ -16,10 +16,12 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "next": "14.0.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "webpack": "^5.89.0"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.2"
+    "eslint-config-next": "14.0.2",
+    "webpack-cli": "^5.1.4"
   }
 }

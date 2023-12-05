@@ -27,7 +27,7 @@ export default function Followers({closeModal,followers,Removefollower}){
                         <div className="RemoveOrCansel">
                             <div className="hr">
                             </div>
-                            <button className="removebtn" onClick={() => {Removefollower(follower),Setremovestep(0)}}>Remove</button>
+                            <button className="removebtn" onClick={() => {Setremovestep(0),Removefollower(follower)}}>Remove</button>
                             <div className="hr">
                             </div>
                             <button onClick={() => Setremovestep(0)}>Cansel</button>
@@ -41,7 +41,7 @@ export default function Followers({closeModal,followers,Removefollower}){
                     <div className="hr">
                     </div>
                     <div className="header-input follower-input">
-                        <input type="text" placeholder="Search" onChange={onChange} />
+                        <input type="text" placeholder="Search" onChange={onChange} value={inputvalue} />
                         <div className="search-icon">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="header-search" />
                         </div>
@@ -59,7 +59,7 @@ export default function Followers({closeModal,followers,Removefollower}){
                                 <h3>{Follower.bio}</h3>
                             </div>
                         </div>
-                        <button className="remove-follower">Remove</button>
+                        <button className="remove-follower" onClick={() => {Setfollower(Follower),Setremovestep(1),console.log(Follower);}}>Remove</button>
                     </div>))}
                     {(filteredFollowers.length == 0 && inputvalue.length >= 1) &&
                     <div className="followersOFUser df jcsb aic">
