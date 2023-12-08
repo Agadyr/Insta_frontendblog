@@ -1,27 +1,21 @@
 'use client'
 import { useState } from "react"
-export default function Home(){
+export default function Home({userStory,SelectId}){
     const [inputvalue,Setinputvalue] = useState('')
+    const AllStory = userStory.map((item,index) => 
+       (<div key={index} className="stories df">
+            <div className="story">
+                <img src={item.imageprofile} onClick={() => SelectId(item.id)} alt="" />
+                <h4>{item.username}</h4>
+            </div>
+       </div>
+
+        ))
     return(
         <div className="Home">
             <div className="home-left">
-                <div className="stories df">
-                    <div className="story">
-                        <img src="posts/2.png" alt="" />
-                        <h4>terryculas</h4>
-                    </div>
-                    <div className="story">
-                        <img src="posts/daryn.jpg" alt="" />
-                        <h4>erex</h4>
-                    </div>
-                    <div className="story">
-                        <img src="posts/3.png" alt="" />
-                        <h4>Beshed</h4>
-                    </div>
-                    <div className="story">
-                        <img src="posts/6.png" alt="" />
-                        <h4>Michael</h4>
-                    </div>
+                <div className="df">
+                    {AllStory}
                 </div>
                 <div className="ThePostSInHomePage">
                     <div className="header-home-post df aic jcsb">
@@ -69,8 +63,8 @@ export default function Home(){
                     <div className="followersOFUser df jcsb aic suggest-user">
                         <div className="df aic">
                             <img src="posts/6.png" alt="" className=""/>
-                            <div className="about-follower ">
-                                <div className="NicknameOfFollower df aic">
+                            <div className="about-follower  suggest-user-title">
+                                <div className="NicknameOfFollower df aic ">
                                     <h2>Jenna </h2>
                                 </div>
                                 <h3 className="gray-p">Followed by christinasterling + 2 m...</h3>
@@ -81,8 +75,8 @@ export default function Home(){
                     <div className="followersOFUser df jcsb aic suggest-user">
                         <div className="df aic">
                             <img src="posts/4.png" alt="" className=""/>
-                            <div className="about-follower ">
-                                <div className="NicknameOfFollower df aic">
+                            <div className="about-follower suggest-user-title">
+                                <div className="NicknameOfFollower df aic ">
                                     <h2>jack</h2>
                                 </div>
                                 <h3 className="gray-p">Followed by jack + 2 m...</h3>
@@ -93,8 +87,8 @@ export default function Home(){
                     <div className="followersOFUser df jcsb aic suggest-user">
                         <div className="df aic">
                             <img src="posts/5.png" alt="" className=""/>
-                            <div className="about-follower ">
-                                <div className="NicknameOfFollower df aic">
+                            <div className="about-follower  suggest-user-title">
+                                <div className="NicknameOfFollower df aic ">
                                     <h2>Anna </h2>
                                 </div>
                                 <h3 className="gray-p">Followed by Anna + 2 m...</h3>

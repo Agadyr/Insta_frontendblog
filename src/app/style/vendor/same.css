@@ -3,4 +3,29 @@
     height: auto;    
     margin: 0 auto;
 }
-
+.fz20{
+    font-size: 24px;
+}
+.mr1{
+    margin-right: 10px;
+}
+.mr2{
+    margin-right: 20px;
+}
+.close-white{
+    cursor: pointer;
+}
+.z-i{
+    z-index:10 ;
+}
+.white-logo{
+    width: 102px;
+    height: 28px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.close-white{
+    width: 30px;
+    height: 30px;
+    color: #fff;
+}

@@ -105,8 +105,15 @@
     margin: 10px 0;
 }
 .suggest-user img{
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    height: 32px !important;
+}
+.suggest-user-title h2 {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+.suggest-user-title h3{
+    font-size: 12px !important;
 }
 .blue{
     color: #0095f6;
