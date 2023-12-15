@@ -1,5 +1,27 @@
+'use client'
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useDispatch,useSelector } from "react-redux"
 import Link from "next/link"
+import { SignIn } from "@/app/store/slices/authSlice"
 export default function Logincomponent(){
+    const router = useRouter()
+    const isAuth = useSelector((state) => state.auth.isAuth)
+    const dispatch = useDispatch()
+    const [email,Setemail] = useState('')
+    const [password,Setpassword] = useState('')
+    const save = () => {
+        if(email.length > 0 && password.length > 0){
+            dispatch(SignIn(email,password))
+        }else{
+            
+        }
+    }
+    useEffect(() => {
+        if(isAuth){
+            router.push("/homepage")
+        }
+    },[isAuth])
     return(
         <div className="registration">
             <div className="df aic">
@@ -13,9 +35,9 @@ export default function Logincomponent(){
                         </div>
                         <div>
                             <form action="" className="regForm">
-                                <input type="text" id="name" placeholder="Phone number,username or email"></input>
-                                <input type="tel" id="phoneNumber" placeholder="Password"/>
-                                <button className="signup btn">Sign Up</button>
+                                <input type="text" placeholder="Phone number,username or email" value={email} onChange={(e) => Setemail(e.target.value)}></input>
+                                <input type="tel"  placeholder="Password" value={password} onChange={(e) => Setpassword(e.target.value)}/>
+                                <button className="signup btn" type="button" onClick={() => save()}>Sign Up</button>
                             </form>
                         </div>
                         <div className="Linefor">

@@ -6,7 +6,7 @@
 }
 .home-left{
     width: 60%;
-    border: 1px solid #dbdbdb;
+    
 }
 .home-right{
     width: 35%;
@@ -19,6 +19,7 @@
 .ThePostSInHomePage{
     max-height: 620px;
     min-height: 320px;
+    border: 1px solid #dbdbdb;
 }
 .story{
    width: 100%;

@@ -35,3 +35,10 @@
     color: red;
     padding-bottom: 20px;
 }
+.header-window{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
