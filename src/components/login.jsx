@@ -10,11 +10,12 @@ export default function Logincomponent(){
     const dispatch = useDispatch()
     const [email,Setemail] = useState('')
     const [password,Setpassword] = useState('')
+    const [error,Seterror] = useState('')
     const save = () => {
         if(email.length > 0 && password.length > 0){
             dispatch(SignIn(email,password))
         }else{
-            
+            Seterror('Please fill in all fields')
         }
     }
     useEffect(() => {
@@ -38,6 +39,7 @@ export default function Logincomponent(){
                                 <input type="text" placeholder="Phone number,username or email" value={email} onChange={(e) => Setemail(e.target.value)}></input>
                                 <input type="tel"  placeholder="Password" value={password} onChange={(e) => Setpassword(e.target.value)}/>
                                 <button className="signup btn" type="button" onClick={() => save()}>Sign Up</button>
+                                {error.length>0 &&<p className="error">{error}</p>}
                             </form>
                         </div>
                         <div className="Linefor">

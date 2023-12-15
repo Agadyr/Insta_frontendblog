@@ -17,7 +17,7 @@ export default function Home({userStory,SelectId}){
                 <div className="df">
                     {AllStory}
                 </div>
-                <div className="ThePostSInHomePage">
+                <div className="ThePostSInHomePage mt2">
                     <div className="header-home-post df aic jcsb">
                         <div className="who-post df aic">
                             <img src="posts/1.png" alt="" />

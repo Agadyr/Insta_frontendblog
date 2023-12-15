@@ -14,7 +14,8 @@
 .stories{
     display: flex;
     justify-content: left;
-    border-bottom: 1px solid #dbdbdb99;
+    max-width: 200px;
+    min-width: 40px;
 }
 .ThePostSInHomePage{
     max-height: 620px;
@@ -31,6 +32,7 @@
 }
 .story img{
     width: 56px;
+    min-width: 40px;
     height: 56px;
     border-radius: 56px;
     padding: 2px;
@@ -45,7 +47,8 @@
 .story{
     font-size: 14px;
     text-align: center;
-    width: 70px;
+    max-width: 70px;
+    min-width: 40px;
 }
 .header-home-post{
     padding: 10px;
@@ -132,5 +135,14 @@
     .home-left{
         justify-content: center;
         width: 70%;
+    }
+}
+@media (max-width:665px) {
+    .story img{
+        width: 48px;
+        height: 48px;
+    }
+    .story h4{
+        font-size: 12px;
     }
 }
