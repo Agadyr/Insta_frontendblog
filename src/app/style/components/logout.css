@@ -1,0 +1,29 @@
+.logout{
+    position: relative;
+}
+.loguot-modal{
+    position: absolute;
+    border-radius: 5px;
+    width: 200px;
+    right: 0;
+    top: 30px;
+    padding: 10px;
+    animation: slideIn .5s ease-out;
+    margin-right: 15px;
+    border-top:1px solid #bebebe79 ;
+    -webkit-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.loguot-modal h2{
+    font-size: 14px;
+    font-weight: 400;
+}
+@keyframes slideIn {
+    0% {
+      transform: translateY(-10%); /* Начальное положение за пределами экрана сверху */
+    }
+    100% {
+      transform: translateY(); /* Конечное положение в верхней части экрана */
+    }
+  }

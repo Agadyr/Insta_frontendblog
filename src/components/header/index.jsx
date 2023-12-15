@@ -1,3 +1,4 @@
+'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse } from "@fortawesome/free-solid-svg-icons"
 import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons"
@@ -5,9 +6,18 @@ import { faSquarePlus } from "@fortawesome/free-solid-svg-icons"
 import { faCompass } from "@fortawesome/free-solid-svg-icons"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
+import { useSelector,useDispatch } from "react-redux"
+import { logOut } from "@/app/store/slices/authSlice"
+import { useState } from "react"
 export default function Header({user,Setmodalwindows}){
+    const dispatch = useDispatch()
+    const [step,SetStep] = useState(0)
     const ShowUser = user.map(item => item)
+    const toggleModal = () => {
+        SetStep((prevStep) => (prevStep === 1 ? 0 : 1));
+      };
     return(
     <div>
         <div className="nav-menu">
@@ -36,6 +46,13 @@ export default function Header({user,Setmodalwindows}){
                 <FontAwesomeIcon icon={faSquarePlus} className="icon" onClick={()=> Setmodalwindows(3)}/>
                 <FontAwesomeIcon icon={faCompass} className="icon"/>
                 <FontAwesomeIcon icon={faHeart} className="icon"/>
+                <div className="logout" onClick={toggleModal}>
+                    <FontAwesomeIcon icon={faRightFromBracket} className="icon"/>
+                   {step == 1 && <div className="loguot-modal" onClick={() => dispatch(logOut())}>
+                        <h2>Log out</h2>
+                    </div>}
+                </div>
+
                <Link href="/userprofile"> <img src={ShowUser[0].imageprofile} alt="" id="imageprofile"/></Link>
             </div>
         </div>

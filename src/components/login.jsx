@@ -35,7 +35,7 @@ export default function Logincomponent(){
                         </div>
                     </div>
                     <div className="haveLogin">
-                        <p>Do you have account? <Link href="/">Sign in</Link></p>
+                        <p>Don't have an account? <Link href="/">Sign in</Link></p>
                     </div>
                     <div className="InApps">
                         <h3>Get the app.</h3>

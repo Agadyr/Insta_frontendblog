@@ -72,7 +72,12 @@ export default function UserProfile(){
             nick_name:"Daniyar",
             bio:"Don't Study",
         }
-        
+        ,
+        {
+            url:"posts/4.png",
+            nick_name:"Daniyar",
+            bio:"Don't Study",
+        }
         
     ]
     let posts = [
@@ -165,8 +170,6 @@ export default function UserProfile(){
                 <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
             {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 
                 <Users closeModal={closeModal} followers={AllFollowers} following={AllFollowing} Removefollower={Removefollower} Setmodalwindows={StepOfModalWindow} Stopfollowing={Stopfollowing} />}
-            
-            
             <User  user={user} Setmodalwindows={SetStepOfModalWindow} />
             <Posts posts={posts} SelectPosts={SetimageID}/>
             <Footer/>

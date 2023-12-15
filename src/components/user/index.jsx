@@ -2,6 +2,7 @@
 import Header from "../header"
 export default function User({user,Setmodalwindows}){
     const ShowUser = user.map(item => item)
+    console.log(ShowUser);
     return(
         <div className="container">
             <div className="user-profile">
