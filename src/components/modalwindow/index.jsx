@@ -18,11 +18,9 @@ export default function ModalWindow({closeModal}){
         setstep(2)
   };
 
-
     const handleClose = () => {
         closeModal(1);
       };
-      console.log(step);
 
     
     return(

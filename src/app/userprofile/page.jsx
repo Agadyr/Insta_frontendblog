@@ -6,7 +6,13 @@ import Footer from '@/components/footer';
 import User from "@/components/user";
 import Users from "@/components/users";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyPosts } from "../store/slices/postSlice";
 export default function UserProfile(){
+    const dispatch = useDispatch()
+    const postssss = useSelector((state) => state.post.posts)
+    
+
     let following = [
         {
             url:"posts/6.png",
