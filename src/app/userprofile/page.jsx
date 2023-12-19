@@ -5,13 +5,22 @@ import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
 import User from "@/components/user";
 import Users from "@/components/users";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyPosts } from "../store/slices/postSlice";
+import { CreatePost } from "../store/slices/postSlice";
 export default function UserProfile(){
+
     const dispatch = useDispatch()
-    const postssss = useSelector((state) => state.post.posts)
-    
+    const posts = useSelector((state) => state.post.posts)
+    const didMount = () =>{
+        dispatch(getMyPosts())
+    }
+    useEffect(didMount,[])
+    console.log(posts);
+    const onSelect = (image,description) => {
+        dispatch(CreatePost({image,description}))
+    }
 
     let following = [
         {
@@ -86,46 +95,6 @@ export default function UserProfile(){
         }
         
     ]
-    let posts = [
-
-        { 
-        id:1,
-        postimage:"/posts/1.png"
-        },
-        {
-        id:2,
-        postimage:"/posts/5.png"
-        },
-        {
-        id:3,                
-        postimage:"/posts/3.png"
-        },       
-        {
-        id:4,    
-        postimage:"/posts/4.png"
-        },
-        {
-        id:5,    
-        postimage:"/posts/5.png"
-        },
-        {
-        id:6,    
-        postimage:"/posts/6.png"
-        },
-        {
-        id:7,    
-        postimage:"/posts/nurali.jpg"
-        },
-        {
-        id:8,    
-        postimage:"/posts/michael.jpg"
-        },
-        {
-        id:9,    
-        postimage:"/posts/daryn.jpg"
-        }
-        
-    ]
     let user  = [
         {
             imageprofile:"posts/1.png",
@@ -171,7 +140,7 @@ export default function UserProfile(){
     return(
         <div>
             {StepOfModalWindow == 3 &&  
-                <ModalWindow closeModal={closeModal} />}
+                <ModalWindow closeModal={closeModal} onSelect={onSelect}/>}
             {imageID >= 1 && 
                 <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
             {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 

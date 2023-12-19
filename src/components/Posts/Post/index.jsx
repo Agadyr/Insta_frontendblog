@@ -1,6 +1,10 @@
 'use client'
 export default function Card({item,SelectPost}){
     return(
-        <img src={item.postimage} alt="Not Found" onClick={() => SelectPost(item.id)} />
+        <div>
+        <img src={item.image} alt="Not Found" onClick={() => SelectPost(item.id)} />
+        {/* <p>{item.description}</p> */}
+        </div>
+
     )
 }

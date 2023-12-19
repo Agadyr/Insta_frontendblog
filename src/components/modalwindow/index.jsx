@@ -4,7 +4,7 @@ import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 import { faSmile } from "@fortawesome/free-solid-svg-icons"
-export default function ModalWindow({closeModal}){
+export default function ModalWindow({closeModal,onSelect}){
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [step, setstep] = useState(1)
@@ -17,7 +17,9 @@ export default function ModalWindow({closeModal}){
         setImagePreview(previewUrl);
         setstep(2)
   };
-
+    const Save = () =>{
+        onSelect(imagePreview,countvalueofinput)
+    }
     const handleClose = () => {
         closeModal(1);
       };
@@ -68,7 +70,10 @@ export default function ModalWindow({closeModal}){
                             <div className="header-filters df jcsb aic">
                                 <svg onClick={() => setstep(2)} ariaLabel="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
                                 <h1>Create New Post</h1>
-                                <h2 onClick={() => handleClose()}>Share</h2>
+                                <h2 onClick={() => {
+                                    handleClose()
+                                    Save()
+                                    }}>Share</h2>
                             </div>
                             <div className="main-filters">
                                 <div className="image-from-modal">
