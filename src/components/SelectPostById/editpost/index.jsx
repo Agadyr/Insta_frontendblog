@@ -45,9 +45,9 @@ export default function EditPost({SetModalSettings,post}){
     
     return(
         <div className="main-window" style={{zIndex:100}}>
-           {removeimage && <div className="remove-modal">
+           {removeimage == 1&& <div className="remove-modal">
                 <div className="rm-buttons">
-                    <button className="removes black">Delete photo? <br /> <span>If you delete this photo, you can restore it within 30 days by going to the menu in your profile Your activity  Recently deleted in the Instagram app. After 30 days, it will be permanently deleted.</span></button>
+                    <button className="removes black">Delete photo? </button>
                     <button className="removes"  onClick={() => 
                        {Seterror('')
                         setImagePreview(null)
@@ -62,7 +62,7 @@ export default function EditPost({SetModalSettings,post}){
                     <div className="image-filters"> 
                         <div className="all-img">
                             <div className="header-filters df jcsb aic">
-                                <svg onClick={() => SetModalSettings(0)} ariaLabel="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
+                                <svg onClick={() => SetModalSettings(0)} aria-label="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
                                 <h1>Edit Post</h1>
                                 <h2 onClick={() => {
                                     Update()

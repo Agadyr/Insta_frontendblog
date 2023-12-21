@@ -12,7 +12,7 @@ export default function AboutUser({Setmodalwindows}){
                     </div>
                     <div className="stateuser">
                         <div className="name df">
-                            <h3>{current_user.full_name}</h3>
+                            {current_user && <h3>{current_user.full_name}</h3>}
                             <div className="follow-btn df">
                                 <button className="btn btn-f">Follow</button>
                                 <button className="More"><img src="/icons/More.png" alt="" /></button>
@@ -24,7 +24,7 @@ export default function AboutUser({Setmodalwindows}){
                             <div className="states-item df" onClick={() => Setmodalwindows(5)}><h2> 5</h2>following</div>
                         </div>
                         <div className="bio">
-                            <h2>{current_user.username}</h2>
+                           {current_user && <h2>{current_user.username}</h2>}
                         </div>
                     </div>
                 </div>

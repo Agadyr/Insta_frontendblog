@@ -9,8 +9,9 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import EditPost from "./editpost"
-import { ToEmptyPost } from "@/app/store/slices/postSlice"
+import { ToEmptyPost, getMyPosts } from "@/app/store/slices/postSlice"
 import { END_POINT } from "@/app/config/EndPoint"
+import { deletePost } from "@/app/store/slices/postSlice"
 export default function SelectPost({post,addCommentsToPost,AllComments,Removecomment}){
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.auth.currentUser)
@@ -30,19 +31,27 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
            <div className="main-window" >
             <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
             {ModalSettings == 3 && <EditPost SetModalSettings={SetModalSettings} post={post}/>}
-            {ModalSettings == 1 && 
-            <div className="remove-modal">
+
+
+
+            {ModalSettings == 4 && <div className="remove-modal">
                 <div className="rm-buttons">
-                    <button className="removes">Report</button>
-                    <button className="removes"  onClick={() => {Removecomment(SelectCommentForDelete);SetModalSettings(0);}}>Delete</button>
-                    <button className="removes" onClick={() => SetRemoveModal(0)}>Cansel</button>
+                    <button className="removes black">Do you want to delete this post?</button>
+                    <button className="removes"  onClick={() => 
+                       {
+                        dispatch(deletePost(post.id))
+                        
+                    }
+                        }>Delete</button>
+                    <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
+
             {ModalSettings == 2 && 
             <div className="remove-modal">
                 <div className="rm-buttons">
                     <button className="removes"  onClick={() => SetModalSettings(3)}>Edit</button>
-                    <button className="removes"  onClick={() => {Removecomment(SelectCommentForDelete);SetModalSettings(0);}}>Delete</button>
+                    <button className="removes"  onClick={() => {SetModalSettings(4)}}>Delete</button>
                     <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
