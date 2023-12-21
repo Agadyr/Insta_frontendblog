@@ -10,6 +10,7 @@ let initialState = {
     tokenExt:0
 }
 console.log(token);
+
 if(token){
     let decodedToken = jwtDecode(token) 
     if(decodedToken.exp * 1000 >= Date.now()){
@@ -58,7 +59,7 @@ export const AuthSlice = createSlice({
         }
     }
 })
-
+console.log(initialState);
 export const {authorize, logOut} = AuthSlice.actions
 
 

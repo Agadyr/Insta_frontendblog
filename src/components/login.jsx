@@ -7,6 +7,7 @@ import { SignIn } from "@/app/store/slices/authSlice"
 export default function Logincomponent(){
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
+    const current = useSelector((state) => state.auth.currentUser)
     const dispatch = useDispatch()
     const [email,Setemail] = useState('')
     const [password,Setpassword] = useState('')

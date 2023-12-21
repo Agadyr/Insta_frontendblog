@@ -10,6 +10,32 @@
     padding: 20px;
     width: 40%;
 }
+
+
+
+.edit-modal{
+    height: calc(100% - 54px) !important;
+}
+.deletePostIcon{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background-color: #000000b1;
+    border-radius:50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+.fatrash{
+    color: #fff;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
 .uploadphoto{
     display: flex;
     justify-content: center;
@@ -100,6 +126,7 @@
     width: 60%;
     height: 100%;
     box-sizing: border-box;
+    position: relative;
 
 }
 .image-from-modal img{
@@ -109,10 +136,6 @@
     box-sizing: border-box;
     border-radius: 0 0 0 15px;
 }
-.right-filters{
-    width: 35%;
-    margin: 0 auto;
-} 
 .close{
     position: absolute;
     right: 40px;
@@ -124,7 +147,9 @@
 .about-post{
     width: 40%;
     margin: 0 auto;
-    padding-left:10px ;
+}
+.pl1{
+    padding-left: 10px !important;
 }
 .caption{
     width: 100%;
@@ -183,9 +208,3 @@ textarea{
     outline: none;
     overflow-y: 100px;
 }
-/* @media (max-width:1217px) {
-    .image-filters{
-        height: min-content;
-        padding-bottom: 50px;
-    }
-} */

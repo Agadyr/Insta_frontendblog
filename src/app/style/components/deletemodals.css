@@ -24,20 +24,12 @@
     border-bottom: 1px solid #b8b8b86c;
     background-color: #fff;
 }
-
-/* .remove-modal{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    max-height:48%;
-    height: 100%;
-    border-radius: 13px;
-    padding: 15px 0 15px 15px;
-    width: 26%;
-    position: relative;
-    z-index: 1;
-} */
+.removes span{
+    font-weight: 300;
+    padding: 15px 0;
+    font-size: 14px;
+    cursor:auto;
+}
 .remove-modal{
     display: flex;
     align-items: center;

@@ -32,6 +32,13 @@
     height: 30px;
     color: #fff;
 }
+.white{
+    color: #fff !important;
+}
+.black{
+    color: black !important;
+    font-size: 18px !important;
+}
 .error{
     text-align: center;
     font-size: 14px;

@@ -10,13 +10,6 @@ export default function HomePage(){
     const closeModal = () => {
         SetStepOfModalWindow(1)
     };
-    let user  = [
-        {
-            imageprofile:"posts/1.png",
-            username:"Michael",
-            bio:"Madi Kairambekov",
-        }
-    ]
     let userStory = [
         {
             id:1,
@@ -51,7 +44,7 @@ export default function HomePage(){
         <div className="container">
             {StepOfModalWindow == 4 && <ShowStoryOfUser closeModal={closeModal} userStory={userStory} StoryId={StoryId}/>}
             {StepOfModalWindow == 3 && <ModalWindow closeModal={closeModal} />}
-            <Header user={user} Setmodalwindows={SetStepOfModalWindow}/>
+            <Header Setmodalwindows={SetStepOfModalWindow}/>
             <Home userStory={userStory} SelectId={SelectId}/>
         </div>
     )

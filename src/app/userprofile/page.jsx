@@ -3,11 +3,12 @@ import ModalWindow from "@/components/modalwindow"
 import SelectPostById from "@/components/SelectPostById";
 import Posts from "@/components/Posts";
 import Footer from '@/components/footer';
-import User from "@/components/user";
+import User from "@/components/AboutUser";
 import Users from "@/components/users";
+import Header from "@/components/header";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyPosts } from "../store/slices/postSlice";
+import { getMyPosts, getPostByid } from "../store/slices/postSlice";
 import { CreatePost } from "../store/slices/postSlice";
 export default function UserProfile(){
 
@@ -16,12 +17,16 @@ export default function UserProfile(){
     const didMount = () =>{
         dispatch(getMyPosts())
     }
+    
     useEffect(didMount,[])
-    console.log(posts);
-    const onSelect = (image,description) => {
-        dispatch(CreatePost({image,description}))
-    }
 
+    const onSelect = (image,description) => {
+        const Form = new FormData();
+        Form.append('image', image);
+        Form.append('description', description);
+        dispatch(CreatePost(Form))
+        
+    }
     let following = [
         {
             url:"posts/6.png",
@@ -95,18 +100,7 @@ export default function UserProfile(){
         }
         
     ]
-    let user  = [
-        {
-            imageprofile:"posts/1.png",
-            username:"Michael",
-            stats:{
-                posts:posts.length,
-                followers:followers.length,
-                following:following.length
-            },
-            bio:"Madi Kairambekov",
-        }
-    ]
+
     const [AllComments,SetAllComments] = useState([])
     const [AllFollowers,SetAllFollowers] = useState(followers)
     const [AllFollowing,SetAllFollowing] = useState(following)
@@ -131,22 +125,32 @@ export default function UserProfile(){
         Rm.splice(index,1)
         SetAllFollowing(Rm)
     }
-    const[imageID,SetimageID] = useState()
     const[StepOfModalWindow,SetStepOfModalWindow] = useState(1)
     const closeModal = () => {
-        SetimageID(0)
         SetStepOfModalWindow(1)
     };
+    
+    const onSelectPost = (data) => {
+        if(data){
+            dispatch(getPostByid(data.id))
+        }
+
+    }
+    const post = useSelector((state) => state.post.post)
+    console.log(post);
+    useEffect(onSelectPost,[])
+
     return(
         <div>
+            <Header Setmodalwindows={SetStepOfModalWindow}/>
             {StepOfModalWindow == 3 &&  
                 <ModalWindow closeModal={closeModal} onSelect={onSelect}/>}
-            {imageID >= 1 && 
-                <SelectPostById posts={posts} imageID={imageID} closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
+            {post.id > 1 && 
+                <SelectPostById post={post}  closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
             {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 
                 <Users closeModal={closeModal} followers={AllFollowers} following={AllFollowing} Removefollower={Removefollower} Setmodalwindows={StepOfModalWindow} Stopfollowing={Stopfollowing} />}
-            <User  user={user} Setmodalwindows={SetStepOfModalWindow} />
-            <Posts posts={posts} SelectPosts={SetimageID}/>
+            <User  Setmodalwindows={SetStepOfModalWindow}/>
+            <Posts posts={posts} onSelectPost={onSelectPost}/>
             <Footer/>
         </div>
 

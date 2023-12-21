@@ -1,5 +1,4 @@
 'use client'
-import Filters from "./filters"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
@@ -8,6 +7,7 @@ export default function ModalWindow({closeModal,onSelect}){
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [step, setstep] = useState(1)
+
     const[countvalueofinput,Setcountvalueofinput] = useState('')
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -17,9 +17,11 @@ export default function ModalWindow({closeModal,onSelect}){
         setImagePreview(previewUrl);
         setstep(2)
   };
+
     const Save = () =>{
-        onSelect(imagePreview,countvalueofinput)
+        onSelect(selectedFile,countvalueofinput)
     }
+
     const handleClose = () => {
         closeModal(1);
       };
@@ -27,10 +29,10 @@ export default function ModalWindow({closeModal,onSelect}){
     
     return(
         <div className="main-window" style={{zIndex:10}}>
+            <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
             <div className="uploadphoto">
                 <FontAwesomeIcon icon={faClose} className="close" onClick={handleClose}/>
                 {step== 1 && <div className="Modal-window">
-                    
                     <h1>Create New Post</h1>
                     <div className="hr">
                     </div>
@@ -45,30 +47,10 @@ export default function ModalWindow({closeModal,onSelect}){
                     </div>
                 </div>}
                 {step == 2 && 
-                <div className="image-filters"> 
-                    <div className="all-img">
-                        <div className="header-filters df jcsb aic">
-                            <svg onClick={() => setstep(1)} aria-label="Back" className="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
-                            <h1>Edit</h1>
-                            <h2 onClick={() => setstep(3)} onChange={() => SetCountValue(0)}>Next</h2>
-                        </div>
-                        <div className="main-filters">
-                            <div className="image-from-modal">
-                                <img src={imagePreview} alt="Preview" />
-                            </div>
-                            <div className="right-filters">
-                                <h1>Filters</h1>
-                                <Filters/>
-                            </div>
-                        </div>
-
-                    </div>  
-                </div>} 
-                {step == 3 && 
                     <div className="image-filters"> 
                         <div className="all-img">
                             <div className="header-filters df jcsb aic">
-                                <svg onClick={() => setstep(2)} ariaLabel="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
+                                <svg onClick={() => setstep(1)} ariaLabel="Back" className="x1lliihq x1n2onr6 x5n08af back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Back</title><line fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" x1="2.909" x2="22.001" y1="12.004" y2="12.004"></line><polyline fill="none" points="9.276 4.726 2.001 12.004 9.276 19.274" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polyline></svg>
                                 <h1>Create New Post</h1>
                                 <h2 onClick={() => {
                                     handleClose()
@@ -77,16 +59,16 @@ export default function ModalWindow({closeModal,onSelect}){
                             </div>
                             <div className="main-filters">
                                 <div className="image-from-modal">
-                                    <img src={imagePreview} alt="Preview" />
+                                    <img src={imagePreview} alt="Preview"/>
                                 </div>
                                 <div className="about-post">
-                                    <div className="header-post df aic">
-                                        <img src="/filters/Michael.jpg" alt="" />
+                                    <div className="header-post df aic pl1">
+                                        <img src="/filters/Michael.jpg" alt=""/>
                                         <h1>decode.kz</h1>
                                     </div>
-                                    <div className="caption">
-                                        <textarea rows="10" placeholder="Write Caption" onChange={e => Setcountvalueofinput(e.target.value)}></textarea>
-                                        <FontAwesomeIcon icon={faSmile} className="smile" onClick={handleClose}/>
+                                    <div className="caption pl1">
+                                        <textarea  rows="10" placeholder="Write Caption" onChange={e => Setcountvalueofinput(e.target.value)}></textarea>
+                                        <FontAwesomeIcon icon={faSmile} className="smile pl1" onClick={handleClose}/>
                                         <div className="count">
                                             <h2>{ countvalueofinput.length }</h2> <h2>/ 2,200</h2>
                                         </div>

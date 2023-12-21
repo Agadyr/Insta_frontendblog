@@ -5,19 +5,26 @@ import { END_POINT } from "@/app/config/EndPoint";
 export const postSlice = createSlice({
     name:"post",
     initialState:{
-        posts:[]
+        posts:[],
+        post:{}
     },
     reducers:{
         setMyPosts:(state,action) => {
             state.posts = action.payload.posts
         },
         uppendMyPosts:(state,action) => {
-            state.posts = [...state.posts,action.payload.newPost]
+            state.posts = [...state.posts,action.payload.posts]
+        },
+        SetPostByid:(state,action) => {
+            state.post = action.payload.post
+        },
+        ToEmptyPost:(state,action) => {
+            state.post = {}
         }
 
     }
 })
-export const {setMyPosts} = postSlice.actions
+export const {setMyPosts,SetPostByid,uppendMyPosts,ToEmptyPost} = postSlice.actions
 
 
 
@@ -32,14 +39,34 @@ export const getMyPosts = () => async(dispatch) =>{
 }
 
 export const CreatePost = (data) => async(dispatch) => {
+    axios.post(`${END_POINT}/api/post/newPost`,data)
+  .then((response) => {
+    dispatch(uppendMyPosts({posts:res.data}))
+    console.log('Server response:', response.data);
+  })
+  .catch((error) => {
+    console.error('Error submitting form:', error);
+  });
+}
+
+
+export const getPostByid = (id) => async(dispatch)=>{
     try {
-        console.log(data);
-        const res = await axios.post(`${END_POINT}/api/post/newPost`,data)
-        dispatch(uppendMyPosts({newPost:res.data}))
+        const res = await axios.get(`${END_POINT}/api/post/getPostByID/${id}`)
+        dispatch(SetPostByid({post:res.data}))
     } catch (error) {
-        alert('You have a error')
+        console.log('You have an error ');
     }
 }
 
 
+export const editPost = (data) => async(dispatch)=>{
+     try {
+        const res = await axios.put(`${END_POINT}/api/post/editPost`,data)
+        dispatch(ToEmptyPost())
+        dispatch(uppendMyPosts({posts:res.data}))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+    }
+}
 export default postSlice.reducer

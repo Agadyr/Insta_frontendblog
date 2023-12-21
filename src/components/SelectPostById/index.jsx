@@ -7,11 +7,16 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons"
 import { faComment } from "@fortawesome/free-regular-svg-icons"
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons"
 import { useState } from "react"
-export default function SelectPost({posts,imageID,closeModal,addCommentsToPost,AllComments,Removecomment}){
+import { useDispatch, useSelector } from "react-redux"
+import EditPost from "./editpost"
+import { ToEmptyPost } from "@/app/store/slices/postSlice"
+import { END_POINT } from "@/app/config/EndPoint"
+export default function SelectPost({post,addCommentsToPost,AllComments,Removecomment}){
+    const dispatch = useDispatch()
+    const currentUser = useSelector((state) => state.auth.currentUser)
     const [inputvalue,Setinputvalue] = useState('')
-    const [RemoveModal,SetRemoveModal] = useState(0)
+    const [ModalSettings,SetModalSettings] = useState(0)
     const [SelectCommentForDelete,SetSelectCommentForDelete] = useState({})
-    const UserPostId = imageID
     const save = () =>{
         const comments = {
             inputvalue,
@@ -20,38 +25,48 @@ export default function SelectPost({posts,imageID,closeModal,addCommentsToPost,A
         addCommentsToPost(comments)
         Setinputvalue('')
     }
+    
     return(
            <div className="main-window" >
-            <FontAwesomeIcon icon={faClose} className="close" onClick={() => closeModal(1)}/>
-            {RemoveModal == 1 && 
+            <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
+            {ModalSettings == 3 && <EditPost SetModalSettings={SetModalSettings} post={post}/>}
+            {ModalSettings == 1 && 
             <div className="remove-modal">
                 <div className="rm-buttons">
                     <button className="removes">Report</button>
-                    <button className="removes"  onClick={() => {Removecomment(SelectCommentForDelete);SetRemoveModal(0);}}>Delete</button>
+                    <button className="removes"  onClick={() => {Removecomment(SelectCommentForDelete);SetModalSettings(0);}}>Delete</button>
                     <button className="removes" onClick={() => SetRemoveModal(0)}>Cansel</button>
+                </div>
+            </div>}
+            {ModalSettings == 2 && 
+            <div className="remove-modal">
+                <div className="rm-buttons">
+                    <button className="removes"  onClick={() => SetModalSettings(3)}>Edit</button>
+                    <button className="removes"  onClick={() => {Removecomment(SelectCommentForDelete);SetModalSettings(0);}}>Delete</button>
+                    <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
                 <div className="Modal-select-window">
                     <div className="left-modal-window">
-                    <img src={posts[UserPostId-1].postimage} alt="" />
+                    <img src={`${END_POINT}${post.image}`} alt="" />
                     </div>
                     <div className="right-modal-window">
                         <div className="header-right-modal">
-                            <img src="posts/2.png" alt="" id="imageprofile"/>
+                            <img src="images/panda.jpg" alt="" id="imageprofile"/>
                             <div className="User-name-in-header">
-                                <h3>decode.kz</h3>
+                                <h3>{currentUser.full_name}</h3>
                                 <h3>Original Audio</h3>
                             </div>
-                            <button className="More"><img src="/icons/More.png" alt="" /></button>
+                            <button className="More" onClick={() => SetModalSettings(2)}><img src="/icons/More.png" alt="" /></button>
                         </div>
                         <div className="hr">
                         </div>
                         <section className="main-section">
                             <div className="UserThatPosted">
-                            <img src="posts/5.png" alt="" id="imageprofile"/>
+                            <img src="images/panda.jpg" alt="" id="imageprofile"/>
                                 <div className="User-name-in-header">
-                                    <h3>decode.kz</h3>
-                                    <p>Some description from text</p>
+                                    <h3>{currentUser.full_name}</h3>
+                                    <p>{post.description}</p>
                                 </div>
                             </div>
                             {AllComments.length <= 0 && <div className="nocomments">
@@ -64,7 +79,7 @@ export default function SelectPost({posts,imageID,closeModal,addCommentsToPost,A
                                     <div className="comments">
                                         <h3>Senalov.kz</h3>
                                         <p>{item.inputvalue}</p>
-                                        <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetRemoveModal(1)}}>Удалить</button>
+                                        <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetModalSettings(1)}}>Удалить</button>
                                         <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />
                                     </div>
 

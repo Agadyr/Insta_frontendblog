@@ -129,8 +129,13 @@ h2{
 }
 .posts-images img{
     margin-top: 20px;
-    width: calc(33.33% - 10px);
+    width: 100%;
+    /* width: 33%; */
     height: 293px;
+}
+.post{
+    width: 33%;
+    gap: 10px;
 }
 
 
