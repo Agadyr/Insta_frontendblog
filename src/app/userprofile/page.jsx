@@ -137,7 +137,6 @@ export default function UserProfile(){
 
     }
     const post = useSelector((state) => state.post.post)
-    console.log(post);
     useEffect(onSelectPost,[])
 
     return(

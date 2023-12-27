@@ -5,10 +5,14 @@ import { END_POINT } from "@/app/config/EndPoint";
 export const postSlice = createSlice({
     name:"post",
     initialState:{
+        allposts:[],
         posts:[],
         post:{}
     },
     reducers:{
+        SetAllUsersPosts:(state,action) => {
+            state.allposts = action.payload.allposts
+        },
         setMyPosts:(state,action) => {
             state.posts = action.payload.posts
         },
@@ -28,10 +32,17 @@ export const postSlice = createSlice({
 
     }
 })
-export const {setMyPosts,SetPostByid,uppendMyPosts,ToEmptyPost,handleDeletedResume} = postSlice.actions
+export const {setMyPosts,SetPostByid,uppendMyPosts,ToEmptyPost,handleDeletedResume,SetAllUsersPosts} = postSlice.actions
 
 
-
+export const getAllUsersPosts = () => async(dispatch)=>{
+    try {
+        const res = await axios.get(`${END_POINT}/api/post/getAllUsersPosts`)
+        dispatch(SetAllUsersPosts({allposts:res.data}))
+    } catch (error) {
+        alert("Ошибка при запросе пожалуйста сообщите об ошибке")
+    }
+}
 export const getMyPosts = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/post/getAllUserPosts`)
@@ -45,7 +56,7 @@ export const getMyPosts = () => async(dispatch) =>{
 export const CreatePost = (data) => async(dispatch) => {
     axios.post(`${END_POINT}/api/post/newPost`,data)
   .then((response) => {
-    dispatch(uppendMyPosts({posts:res.data}))
+    dispatch(uppendMyPosts({posts:response.data}))
     console.log('Server response:', response.data);
   })
   .catch((error) => {
@@ -67,8 +78,8 @@ export const getPostByid = (id) => async(dispatch)=>{
 export const editPost = (data) => async(dispatch)=>{
      try {
         const res = await axios.put(`${END_POINT}/api/post/editPost`,data)
-        dispatch(ToEmptyPost())
-        dispatch(uppendMyPosts({posts:res.data}))
+        dispatch(getMyPosts())
+        
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
     }

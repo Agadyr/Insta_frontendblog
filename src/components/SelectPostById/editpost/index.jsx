@@ -6,6 +6,7 @@ import { faSmile } from "@fortawesome/free-solid-svg-icons"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { END_POINT } from "@/app/config/EndPoint"
 import { editPost } from "@/app/store/slices/postSlice"
+import { ToEmptyPost } from "@/app/store/slices/postSlice"
 import { useDispatch } from "react-redux"
 export default function EditPost({SetModalSettings,post}){
     const dispatch = useDispatch()
@@ -36,6 +37,7 @@ export default function EditPost({SetModalSettings,post}){
             Form.append('description', valueofinput);
             Form.append('id',post.id)
             dispatch(editPost(Form))
+            dispatch(ToEmptyPost())
         }else{
             Seterror("please fill out all fields")
         }

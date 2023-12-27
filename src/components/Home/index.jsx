@@ -1,6 +1,17 @@
 'use client'
 import { useState } from "react"
+import { getAllUsersPosts } from "@/app/store/slices/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { END_POINT } from "@/app/config/EndPoint";
 export default function Home({userStory,SelectId}){
+    const dispatch = useDispatch()
+    const Allposts = useSelector((state) => state.post.allposts)
+    const didMount = () =>{
+        dispatch(getAllUsersPosts())
+    }
+    
+    useEffect(didMount,[])
     const [inputvalue,Setinputvalue] = useState('')
     const AllStory = userStory.map((item,index) => 
        (<div key={index} className="stories df">
@@ -17,7 +28,7 @@ export default function Home({userStory,SelectId}){
                 <div className="df">
                     {AllStory}
                 </div>
-                <div className="ThePostSInHomePage mt2">
+                {Allposts && Allposts.map(item => (<div className="ThePostSInHomePage mt2">
                     <div className="header-home-post df aic jcsb">
                         <div className="who-post df aic">
                             <img src="posts/1.png" alt="" />
@@ -25,7 +36,7 @@ export default function Home({userStory,SelectId}){
                         </div>
                         <p>...</p>
                     </div>  
-                    <img src="posts/1.png" alt="" className="home-post-image"/>
+                    <img src={`${END_POINT}/${item.image}`} alt="" className="home-post-image"/>
                     <div className="add-comment add-comment-home-post">
                         <div className="options">
                             <div className="left-options" >
@@ -38,8 +49,8 @@ export default function Home({userStory,SelectId}){
                         </div>
                         <h3 className="likeOfPoST">5 likes</h3>
                         <div className="about-home-post">
-                            <h3 className="">terryculas</h3>
-                            <p>Imperdiet in sit rhoncus, eleifend tellus augue lectus potenti </p>
+                            <h3 className="">{item.User.full_name}</h3>
+                            <p>{item.description} </p>
                         </div>
                         <p className="gray-p">View all 100 comments</p>
                         <p className="gray-p">1 HOUR AGO</p>
@@ -52,7 +63,7 @@ export default function Home({userStory,SelectId}){
                                 {inputvalue.length ==0 && <button className="Add-comment-to-post withoutcolor">Post</button>}
                             </div>
                         </div>
-                </div>
+                </div>))}
             </div>
             <div className="home-right">
                 <div className="suggest">
