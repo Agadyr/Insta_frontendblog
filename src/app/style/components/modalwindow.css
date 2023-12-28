@@ -7,7 +7,7 @@
     background-color: #fff;
     height: 80%;
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px 0;
     width: 40%;
 }
 .uploadphoto{
@@ -194,4 +194,22 @@
     height: 100%;
 }
 
-
+.story-modal{
+    width: 40% !important;
+}
+.create-story{
+    height: 671px;
+    width: 100% !important;
+    overflow: auto;
+}
+.create-story::-webkit-scrollbar {
+    width: 0px; /* Ширина полосы прокрутки */
+  }
+.create-story img{
+    border-radius: 0px 0px 4px 4px;
+}
+.video{
+    height: calc(100% - 39px);
+    border-radius: 4px !important;
+    border-radius: 0 0 0 15px;
+}

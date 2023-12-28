@@ -18,7 +18,9 @@ export default function Home({userStory,SelectId}){
     const AllStory = userStory.map((item,index) => 
        (<div key={index} className="stories df">
             <div className="story">
-                <img src={item.imageprofile} onClick={() => SelectId(item.id)} alt="" />
+                <div className="borderstory">
+                    <img src={item.imageprofile} onClick={() => SelectId(item.id)} alt="" />
+                </div>
                 <h4>{item.username}</h4>
             </div>
        </div>

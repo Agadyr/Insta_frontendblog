@@ -13,10 +13,10 @@
     padding: 20px 10px;
 }
 .Show-story-bg{
-    background-color: rgb(46, 45, 45);
+    background-color: #1A1A1A;
 }
 .show-Story{
-    width: 400px;
+    width: 450px;
     height: 97%;
     border-radius: 10px;
     display: flex;

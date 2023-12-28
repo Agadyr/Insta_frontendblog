@@ -49,6 +49,26 @@
     max-width: 70px;
     min-width: 40px;
 }
+.borderstory{
+    border: 1px solid #b7b1b1;
+    border-radius: 50%;
+}
+.ProfileAllStories{
+    margin: 40px 0 40px 20px;
+    gap: 20px;
+}
+.Profilestories{
+    max-width: 300px;
+}
+.ProfileUserStory{
+    max-width: 100px;
+}
+.ProfileUserStories{
+    width: 75px !important;
+    height: 75px !important;
+}
+
+
 .header-home-post{
     padding: 10px;
 }

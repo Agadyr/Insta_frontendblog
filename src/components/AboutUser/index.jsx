@@ -1,10 +1,23 @@
 'use client'
-import { useSelector } from "react-redux"
+import { getMyStories } from "@/app/store/slices/StorySlice"
+import { useEffect, useState } from "react"
+import { useSelector,useDispatch } from "react-redux"
+import ShowStoryOfUser from "../ShowStoryOfUser"
 export default function AboutUser({Setmodalwindows}){
     const current_user = useSelector((state) => state.auth.currentUser)
     const posts = useSelector((state) => state.post.posts)
+    const stories = useSelector((state) => state.story.stories)
+    const [SelectStory,SetSelectStory] = useState({})
+    const dispatch = useDispatch()
+    const didmount = () => {
+        dispatch(getMyStories())
+    }
+    useEffect(didmount,[])
+
     return(
+        
         <div className="container">
+            {SelectStory.id && <ShowStoryOfUser SelectStory={SelectStory} SetSelectStory={SetSelectStory}/>}
             <div className="user-profile">
                 <div className="aboutuser df aic">
                     <div className="userprofilephoto">
@@ -28,8 +41,21 @@ export default function AboutUser({Setmodalwindows}){
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div className="df ProfileAllStories">
+                        {stories && stories.map(item => (
+                        <div className="stories Profilestories df">
+                            <div className="story ProfileUserStory">
+                                <div className="borderstory">
+                                    <img className='ProfileUserStories' src='posts/1.png'  alt="" onClick={() => SetSelectStory(item)}/>
+                                </div>
+                                <h4>Madi</h4>
+                            </div>
+                        </div>))}
+                    </div>
+                </div>
                 <div className="posts">
-                    <hr className="line"/>
+                    <hr className="li className='UserStories'ne"/>
                     <div className="posts-hr">
                         <div className="posts-img df">
                             <img src="/icons/icon.svg" alt="" />

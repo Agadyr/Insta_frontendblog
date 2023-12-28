@@ -5,14 +5,9 @@ import { END_POINT } from "@/app/config/EndPoint";
 export const CommentSlice = createSlice({
     name:"comment",
     initialState:{
-        // allposts:[],
         comments:[],
-        // post:{}
     },
     reducers:{
-        // SetAllUsersComments:(state,action) => {
-        //     state.allposts = action.payload.allposts
-        // },
         setMyComments:(state,action) => {
             state.comments = action.payload.comments
         },

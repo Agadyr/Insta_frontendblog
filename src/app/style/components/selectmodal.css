@@ -79,7 +79,9 @@
     background-color: #8888883d;
     margin: 12px 0;
 }
-
+.hr2{
+    background-color: #0095f6;
+}
 .comments{
     width: 100%;
     margin-left: 20px;

@@ -42,7 +42,7 @@ export default function HomePage(){
     }
     return(
         <div className="container">
-            {StepOfModalWindow == 4 && <ShowStoryOfUser closeModal={closeModal} userStory={userStory} StoryId={StoryId}/>}
+            {/* {StepOfModalWindow == 4 && <ShowStoryOfUser closeModal={closeModal} userStory={userStory} StoryId={StoryId}/>} */}
             {StepOfModalWindow == 3 && <ModalWindow closeModal={closeModal} />}
             <Header Setmodalwindows={SetStepOfModalWindow}/>
             <Home userStory={userStory} SelectId={SelectId}/>
