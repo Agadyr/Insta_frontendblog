@@ -101,18 +101,8 @@ export default function UserProfile(){
         
     ]
 
-    const [AllComments,SetAllComments] = useState([])
     const [AllFollowers,SetAllFollowers] = useState(followers)
     const [AllFollowing,SetAllFollowing] = useState(following)
-    const addCommentsToPost = (item) =>{
-        SetAllComments([...AllComments,item])
-    }
-    const Removecomment = (comment) =>{
-        let Rm = [...AllComments]
-        let index = AllComments.indexOf(comment)
-        Rm.splice(index,1)
-        SetAllComments(Rm)
-    }
     const Removefollower = (follower) =>{
         let Rm = [...AllFollowers]
         let index = AllFollowers.indexOf(follower)
@@ -145,7 +135,7 @@ export default function UserProfile(){
             {StepOfModalWindow == 3 &&  
                 <ModalWindow closeModal={closeModal} onSelect={onSelect}/>}
             {post.id > 1 && 
-                <SelectPostById post={post}  closeModal={closeModal} addCommentsToPost={addCommentsToPost} AllComments={AllComments} Removecomment={Removecomment}/>}
+                <SelectPostById post={post}  closeModal={closeModal} />}
             {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 
                 <Users closeModal={closeModal} followers={AllFollowers} following={AllFollowing} Removefollower={Removefollower} Setmodalwindows={StepOfModalWindow} Stopfollowing={Stopfollowing} />}
             <User  Setmodalwindows={SetStepOfModalWindow}/>

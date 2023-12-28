@@ -95,13 +95,19 @@
     font-size: 14px;
     margin-left: 15px;
     max-width: 250px !important;
-    width: 100% !important;
+    width: 100%;
 }
 .comment h3{
     font-size: 14px;
 }
 .settings-comment{
     gap: 10px;
+}
+.time-ago{
+    font-size: 12px !important;
+    color: #737373;
+    margin-left: 0 !important;
+    width: max-content !important;
 }
 .fa-heart-h{
     width: 14px;

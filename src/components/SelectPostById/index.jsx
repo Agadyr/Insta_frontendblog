@@ -9,18 +9,22 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons"
 import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { formatDistanceToNow } from 'date-fns';
 import EditPost from "./editpost"
 import { ToEmptyPost, getMyPosts } from "@/app/store/slices/postSlice"
 import { END_POINT } from "@/app/config/EndPoint"
 import { deletePost } from "@/app/store/slices/postSlice"
-import { CreateComment, getMyComments } from "@/app/store/slices/commentSlice"
-export default function SelectPost({post,addCommentsToPost,AllComments,Removecomment}){
+import { CreateComment, deleteComment, getMyComments } from "@/app/store/slices/commentSlice"
+export default function SelectPost({post}){
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.auth.currentUser)
     const [inputvalue,Setinputvalue] = useState('')
+    const [selectCommentForDelete,SetselectCommentForDelete] = useState()
     const [ModalSettings,SetModalSettings] = useState(0)
-    const [SelectCommentForDelete,SetSelectCommentForDelete] = useState({})
     const comments = useSelector((state) => state.comment.comments)
+
+    
+
     const didMount = () =>{
         dispatch(getMyComments(post.id))
     }
@@ -38,8 +42,6 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
            <div className="main-window" >
             <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
             {ModalSettings == 3 && <EditPost SetModalSettings={SetModalSettings} post={post}/>}
-
-
 
             {ModalSettings == 4 && <div className="remove-modal">
                 <div className="rm-buttons">
@@ -62,6 +64,20 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                     <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
+            
+            {ModalSettings == 5 && 
+            <div className="remove-modal">
+                <div className="rm-buttons">
+                    <button className="removes">Report</button>
+                    <button className="removes"  onClick={() => {
+                        dispatch(deleteComment(selectCommentForDelete,post.id))
+                        SetModalSettings(0)
+                        }}>Delete Comment</button>
+                    <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
+                </div>
+            </div>}
+
+
                 <div className="Modal-select-window">
                     <div className="left-modal-window">
                     <img src={`${END_POINT}${post.image}`} alt="" />
@@ -92,7 +108,9 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                             </div>}
 
 
-                            {comments.length > 0 && comments.map((item, index) => (
+                            {comments.length > 0 && comments.map((item, index) => {
+                            const timeAgo = formatDistanceToNow(new Date(item.updatedAt), { addSuffix: true })
+                            return(
                                 <div className="CommentOfUser" key={index}>
                                     <img src="posts/4.png" id="imageprofile" alt="" />
                                     <div className="comments">
@@ -101,9 +119,12 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                                             <p>{item.description}</p>
                                         </div>
                                         <div className="df aic settings-comment">
-                                            <h4>Now</h4>
+                                            <p className="time-ago">{timeAgo}</p>
                                             <h4>Reply</h4>
-                                            <button className="More" ><img src="/icons/More.png" alt="" /></button>
+                                            <button className="More" onClick={() => {SetModalSettings(5);SetselectCommentForDelete(item.id)}} ><img src="/icons/More.png" alt="" /></button>
+                                        </div>
+                                        <div>
+                                           
                                         </div>
 
                                         {/* <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetModalSettings(1)}}>Удалить</button> */}
@@ -112,8 +133,8 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                                     <div className="select-comment">
                                         <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />
                                     </div>
-                                </div>
-                            ))}
+                                </div>)
+                            })}
                         </section>
                         <div className="hr">
                         </div>
