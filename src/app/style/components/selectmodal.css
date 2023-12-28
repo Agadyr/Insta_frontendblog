@@ -41,6 +41,7 @@
     align-items: center;
     width: 100%;
     padding: 12px;
+    margin-top: 12px;
 }
 .main-section{
     padding: 12px;
@@ -77,17 +78,30 @@
     background-color: #8888883d;
     margin: 12px 0;
 }
+
 .comments{
-    display: flex;
-    justify-content: left;
-    align-items: center;
     width: 100%;
     margin-left: 20px;
 }
+.comments h4{
+    font-size: 12px;
+    color: #737373;
+}
+.settings-comment h4:nth-child(2){
+    font-weight: 500;
+}
 .comments p{
+    display: flex;
     font-size: 14px;
     margin-left: 15px;
-    width: 250px;
+    max-width: 250px !important;
+    width: 100% !important;
+}
+.comment h3{
+    font-size: 14px;
+}
+.settings-comment{
+    gap: 10px;
 }
 .fa-heart-h{
     width: 14px;
@@ -98,6 +112,7 @@
 
 
 .add-comment{
+    
     padding:0 12px;
 }
 .options{
@@ -142,6 +157,7 @@
     padding: 0 12px;
     border-top: 1px solid #8888882b;
     box-sizing: border-box;
+    padding-top: 12px;
 }
 .add-comment-to-input input{
     border: none;

@@ -79,7 +79,8 @@
 .More{
     border: none;
     background: transparent;
-    margin-left: -12px;
+    margin-left: -9px;
+    margin-top: 4px;
 }
 .states-item{
     margin: 15px 20px 15px 0;

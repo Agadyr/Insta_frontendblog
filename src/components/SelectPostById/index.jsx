@@ -7,23 +7,30 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons"
 import { faComment } from "@fortawesome/free-regular-svg-icons"
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons"
 import { useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import EditPost from "./editpost"
 import { ToEmptyPost, getMyPosts } from "@/app/store/slices/postSlice"
 import { END_POINT } from "@/app/config/EndPoint"
 import { deletePost } from "@/app/store/slices/postSlice"
+import { CreateComment, getMyComments } from "@/app/store/slices/commentSlice"
 export default function SelectPost({post,addCommentsToPost,AllComments,Removecomment}){
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.auth.currentUser)
     const [inputvalue,Setinputvalue] = useState('')
     const [ModalSettings,SetModalSettings] = useState(0)
     const [SelectCommentForDelete,SetSelectCommentForDelete] = useState({})
+    const comments = useSelector((state) => state.comment.comments)
+    const didMount = () =>{
+        dispatch(getMyComments(post.id))
+    }
+    
+    useEffect(didMount,[])
     const save = () =>{
-        const comments = {
-            inputvalue,
-            UserPostId
-        }
-        addCommentsToPost(comments)
+        dispatch(CreateComment({
+            description:inputvalue,
+            postId:post.id
+        }))
         Setinputvalue('')
     }
     
@@ -78,21 +85,33 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                                     <p>{post.description}</p>
                                 </div>
                             </div>
-                            {AllComments.length <= 0 && <div className="nocomments">
+
+                            {comments.length <= 0 && <div className="nocomments">
                                 <h1>No comments yet.</h1>
                                 <p>Start the conversation.</p>
                             </div>}
-                            {AllComments.length > 0 && AllComments.map((item, index) => (
+
+
+                            {comments.length > 0 && comments.map((item, index) => (
                                 <div className="CommentOfUser" key={index}>
                                     <img src="posts/4.png" id="imageprofile" alt="" />
                                     <div className="comments">
-                                        <h3>Senalov.kz</h3>
-                                        <p>{item.inputvalue}</p>
-                                        <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetModalSettings(1)}}>Удалить</button>
+                                        <div className="df  comment">
+                                            <h3 >{item.User.full_name}</h3>
+                                            <p>{item.description}</p>
+                                        </div>
+                                        <div className="df aic settings-comment">
+                                            <h4>Now</h4>
+                                            <h4>Reply</h4>
+                                            <button className="More" ><img src="/icons/More.png" alt="" /></button>
+                                        </div>
+
+                                        {/* <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetModalSettings(1)}}>Удалить</button> */}
+                                        
+                                    </div>
+                                    <div className="select-comment">
                                         <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />
                                     </div>
-
-
                                 </div>
                             ))}
                         </section>
@@ -116,8 +135,8 @@ export default function SelectPost({post,addCommentsToPost,AllComments,Removecom
                             <div className="input-container">
                                 <FontAwesomeIcon icon={faFaceSmile} className="smileOfSelect" />
                                 <input type="text" placeholder="Add a comment..." className="full-width" onChange={(e)=> Setinputvalue(e.target.value)} value={inputvalue}/>
-                                {inputvalue.length >1 && <button className="Add-comment-to-post" onClick={save}>Post</button>}
-                                {inputvalue.length ==0 && <button className="Add-comment-to-post withoutcolor">Post</button>}
+                                {inputvalue.length >= 1 && <button className="Add-comment-to-post" onClick={() => save()}>Post</button>}
+                                {inputvalue.length == 0 && <button className="Add-comment-to-post withoutcolor">Post</button>}
                             </div>
                         </div>
                     </div>
