@@ -71,7 +71,6 @@
 .about-home-post{
     display: flex;
     align-items: end;
-
 }
 .add-comment-home-post{
     margin-bottom: 20px;
@@ -81,6 +80,7 @@
     font-weight: 500;
 }
 .about-home-post p{
+    margin-top: 3px;
     margin-left: 5px;
     font-size: 13px;
 }
@@ -97,6 +97,9 @@
 }
 .p2{
     padding: 2px 4px;
+}
+.p02{
+    padding: 2px 0;
 }
 .suggest{
     display: flex;

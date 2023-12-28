@@ -4,15 +4,17 @@ import { getAllUsersPosts } from "@/app/store/slices/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { END_POINT } from "@/app/config/EndPoint";
+import AddComment from './AddComment'
 export default function Home({userStory,SelectId}){
     const dispatch = useDispatch()
     const Allposts = useSelector((state) => state.post.allposts)
+    const [inputvalue,Setinputvalue] = useState('')
+    const [selectPostId,SetselectPostId] = useState({})
     const didMount = () =>{
         dispatch(getAllUsersPosts())
     }
     
     useEffect(didMount,[])
-    const [inputvalue,Setinputvalue] = useState('')
     const AllStory = userStory.map((item,index) => 
        (<div key={index} className="stories df">
             <div className="story">
@@ -24,15 +26,17 @@ export default function Home({userStory,SelectId}){
         ))
     return(
         <div className="Home">
+            {selectPostId.id && <AddComment selectPostId={selectPostId} SetselectPostId={SetselectPostId}/>}
             <div className="home-left">
                 <div className="df">
                     {AllStory}
                 </div>
-                {Allposts && Allposts.map(item => (<div className="ThePostSInHomePage mt2">
+                {Allposts && Allposts.map(item => (
+                <div className="ThePostSInHomePage mt2">
                     <div className="header-home-post df aic jcsb">
                         <div className="who-post df aic">
-                            <img src="posts/1.png" alt="" />
-                            <h3>terryculas</h3>
+                            <img src="images/panda.jpg" alt="" />
+                            <h3>{item.User.full_name}</h3>
                         </div>
                         <p>...</p>
                     </div>  
@@ -44,7 +48,7 @@ export default function Home({userStory,SelectId}){
                                 <img src="icons/comments.svg" alt="" className="p2" />
                             </div>
                             <div className="right-options">
-                                <img src="icons/save.svg" alt="" className="p2"/>
+                                <img src="icons/save.svg" alt="" className="p02"/>
                             </div>
                         </div>
                         <h3 className="likeOfPoST">5 likes</h3>
@@ -52,7 +56,7 @@ export default function Home({userStory,SelectId}){
                             <h3 className="">{item.User.full_name}</h3>
                             <p>{item.description} </p>
                         </div>
-                        <p className="gray-p">View all 100 comments</p>
+                        {item && item.Comments &&  <p onClick={() => SetselectPostId(item)} className="gray-p"> View all {item.Comments.length} comments</p>}
                         <p className="gray-p">1 HOUR AGO</p>
                     </div>
                     <div className="add-comment-to-input">
