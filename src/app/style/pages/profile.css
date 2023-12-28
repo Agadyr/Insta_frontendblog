@@ -77,10 +77,15 @@
     border-radius:4px;
 }
 .More{
+    opacity: 0;
     border: none;
     background: transparent;
     margin-left: -9px;
     margin-top: 4px;
+}
+.settings-comment:hover > .More{
+    transition: .1s;
+    opacity:1;
 }
 .states-item{
     margin: 15px 20px 15px 0;

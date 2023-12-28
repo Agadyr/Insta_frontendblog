@@ -12,11 +12,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { formatDistanceToNow } from 'date-fns';
 import { END_POINT } from "@/app/config/EndPoint"
 import { CreateComment, getMyComments } from "@/app/store/slices/commentSlice"
+import { deleteComment } from "@/app/store/slices/commentSlice"
 export default function AddComment({selectPostId,SetselectPostId}){
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.auth.currentUser)
     const [inputvalue,Setinputvalue] = useState('')
     const [ModalSettings,SetModalSettings] = useState(0)
+    const [selectCommentForDelete,SetselectCommentForDelete] = useState()
     const comments = useSelector((state) => state.comment.comments)
     
     const didMount = () =>{
@@ -34,6 +36,17 @@ export default function AddComment({selectPostId,SetselectPostId}){
     
     return(
            <div className="main-window" >
+            {ModalSettings == 1 && 
+            <div className="remove-modal">
+                <div className="rm-buttons">
+                    <button className="removes">Report</button>
+                    <button className="removes"  onClick={() => {
+                        dispatch(deleteComment(selectCommentForDelete,selectPostId.id))
+                        SetModalSettings(0)
+                        }}>Delete Comment</button>
+                    <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
+                </div>
+            </div>}
             <FontAwesomeIcon icon={faClose} className="close" onClick={() => SetselectPostId({})}/>
             
                 <div className="Modal-select-window">
@@ -79,6 +92,7 @@ export default function AddComment({selectPostId,SetselectPostId}){
                                             <div className="df aic settings-comment">
                                                 <p className="time-ago">{timeAgo}</p>
                                                 <h4>Reply</h4>
+                                                {item.User.full_name == currentUser.full_name && <button className="More" onClick={() => {SetModalSettings(1);SetselectCommentForDelete(item.id)}} ><img src="/icons/More.png" alt="" /></button>}
                                             </div>
                                         <div>
                                     </div>
