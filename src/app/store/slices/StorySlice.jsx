@@ -35,8 +35,12 @@ export const getMyStories = () => async(dispatch) =>{
 
 }
 
-export const CreateComment = (video) => async(dispatch) => {
-    axios.post(`${END_POINT}/api/post/newStory`)
+export const CreateStory = (video) => async(dispatch) => {
+
+    let fd = new FormData()
+    fd.append('video', video)
+
+    axios.post(`${END_POINT}/api/post/newStory`,fd)
     .then((response) => {;
         dispatch(getMyStories())
     }).catch((error) =>{

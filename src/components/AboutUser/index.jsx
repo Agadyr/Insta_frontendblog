@@ -43,8 +43,8 @@ export default function AboutUser({Setmodalwindows}){
                 </div>
                 <div>
                     <div className="df ProfileAllStories">
-                        {stories && stories.map(item => (
-                        <div className="stories Profilestories df">
+                        {stories && stories.map((item,index) => (
+                        <div key={index} className="stories Profilestories df">
                             <div className="story ProfileUserStory">
                                 <div className="borderstory">
                                     <img className='ProfileUserStories' src='posts/1.png'  alt="" onClick={() => SetSelectStory(item)}/>
