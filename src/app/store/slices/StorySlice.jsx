@@ -48,13 +48,13 @@ export const CreateStory = (video) => async(dispatch) => {
     })
 }
 
-// export const deleteComment = (commentid,postid) => async(dispatch) => {
-//     try {
-//         const res = await axios.delete(`${END_POINT}/api/deleteComment/${commentid}`)
-//         dispatch(handleDeletedComments(commentid))
-//         dispatch(getMyComments(postid))
-//     } catch (error) {
-//         alert("что то пошло не так сообщите тех поддержке сайта")
-//     }
-// }
+export const deleteStory = (story) => async(dispatch) => {
+    try {
+        const res = await axios.delete(`${END_POINT}/api/post/deleteStory/${story.id}`)
+        dispatch(handleDeletedStories(story.id))
+        dispatch(getMyStories())
+    } catch (error) {
+        alert("что то пошло не так сообщите тех поддержке сайта")
+    }
+}
 export default StorySlice.reducer

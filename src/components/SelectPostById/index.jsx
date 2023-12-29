@@ -124,11 +124,7 @@ export default function SelectPost({post}){
                                             <button className="More" onClick={() => {SetModalSettings(5);SetselectCommentForDelete(item.id)}} ><img src="/icons/More.png" alt="" /></button>
                                         </div>
                                         <div>
-                                           
-                                        </div>
-
-                                        {/* <button className="btn rm-button" onClick={() =>{SetSelectCommentForDelete(item);SetModalSettings(1)}}>Удалить</button> */}
-                                        
+                                        </div>                                        
                                     </div>
                                     <div className="select-comment">
                                         <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />

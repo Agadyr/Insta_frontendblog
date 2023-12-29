@@ -76,6 +76,12 @@
     padding: 6px 18px;
     border-radius:4px;
 }
+.More-setting{
+    border: none;
+    background: transparent;
+    margin-left: -9px;
+    margin-top: 4px;
+}
 .More{
     opacity: 0;
     border: none;
@@ -114,7 +120,7 @@ h2{
 }
 .posts-img{
     margin-top: 10px;
-    gap: 10px;
+    gap: 20px;
 }
 .posts-img h3{
     font-weight: 500;
@@ -139,7 +145,8 @@ h2{
     height: 293px;
 }
 .post{
-    width: 33%;
+    width: 32%;
+    margin-bottom: 20px;
 }
 
 

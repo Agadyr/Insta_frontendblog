@@ -21,14 +21,14 @@ export default function AboutUser({Setmodalwindows}){
             <div className="user-profile">
                 <div className="aboutuser df aic">
                     <div className="userprofilephoto">
-                        <img src='/images/panda.jpg' alt="Not found" id="userphoto" />
+                        <img src='/posts/1.png' alt="Not found" id="userphoto" />
                     </div>
                     <div className="stateuser">
-                        <div className="name df">
+                        <div className="name df ">
                             {current_user && <h3>{current_user.full_name}</h3>}
                             <div className="follow-btn df">
                                 <button className="btn btn-f">Follow</button>
-                                <button className="More"><img src="/icons/More.png" alt="" /></button>
+                                <button className="More-setting"><img src="/icons/More.png" alt="" /></button>
                             </div>
                         </div>
                         <div className="states df">
@@ -47,7 +47,7 @@ export default function AboutUser({Setmodalwindows}){
                         <div key={index} className="stories Profilestories df">
                             <div className="story ProfileUserStory">
                                 <div className="borderstory">
-                                    <img className='ProfileUserStories' src='posts/1.png'  alt="" onClick={() => SetSelectStory(item)}/>
+                                    <img className='ProfileUserStories' src='images/reine.jpg'  alt="" onClick={() => SetSelectStory(item)}/>
                                 </div>
                                 <h4>Madi</h4>
                             </div>

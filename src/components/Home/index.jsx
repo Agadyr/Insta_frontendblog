@@ -33,8 +33,8 @@ export default function Home({userStory,SelectId}){
                 <div className="df">
                     {AllStory}
                 </div>
-                {Allposts && Allposts.map(item => (
-                <div className="ThePostSInHomePage mt2">
+                {Allposts && Allposts.map((item,index) => (
+                <div key={index} className="ThePostSInHomePage mt2">
                     <div className="header-home-post df aic jcsb">
                         <div className="who-post df aic">
                             <img src="images/panda.jpg" alt="" />
