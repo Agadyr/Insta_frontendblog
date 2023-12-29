@@ -11,17 +11,22 @@ export const LikeSlice = createSlice({
         setMyLikes:(state,action) => {
             state.likes = action.payload.likes
         },
-        uppendMyLikes:(state,action) => {
-            state.likes = [...state.likes,action.payload.likes]
-        },
         handleDeletedLikes:(state,action) => {
             let likes = [...state.likes]
             likes = likes.filter(item => item.id !== action.payload)
+        },
+
+        setMyCommentLikes:(state,action) => {
+            state.commentLikes = action.payload.commentLikes
+        },
+        handleDeletedCoomentLikes:(state,action) => {
+            let commentLikes = [...state.commentLikes]
+            commentLikes = commentLikes.filter(item => item.id !== action.payload)
         }
 
     }
 })
-export const {setMyLikes,handleDeletedLikes} = LikeSlice.actions
+export const {setMyLikes,handleDeletedLikes,setMyCommentLikes,handleDeletedCoomentLikes,uppendMyComments} = LikeSlice.actions
 
 
 
@@ -54,4 +59,24 @@ export const removeLike = (likeid,id) => async(dispatch) => {
         alert("что то пошло не так сообщите тех поддержке сайта")
     }
 }
+
+
+
+
+
+
+
+export const addLikeToComment = (id) => async(dispatch) => {
+
+    axios.post(`${END_POINT}/api/like/add-like-to-post/${id}`)
+    .then((response) => {;
+        dispatch(getLikesOfPost(id))
+    }).catch((error) =>{
+        console.log(error);
+    })
+}
+
+
+
+
 export default LikeSlice.reducer
