@@ -15,21 +15,26 @@ import { ToEmptyPost, getMyPosts } from "@/app/store/slices/postSlice"
 import { END_POINT } from "@/app/config/EndPoint"
 import { deletePost } from "@/app/store/slices/postSlice"
 import { CreateComment, deleteComment, getMyComments } from "@/app/store/slices/commentSlice"
+import { getMyStories } from "@/app/store/slices/StorySlice"
+import { getLikesOfPost } from "@/app/store/slices/LikeSlice"
 export default function SelectPost({post}){
     const dispatch = useDispatch()
-    const currentUser = useSelector((state) => state.auth.currentUser)
-    const [inputvalue,Setinputvalue] = useState('')
-    const [selectCommentForDelete,SetselectCommentForDelete] = useState()
-    const [ModalSettings,SetModalSettings] = useState(0)
     const comments = useSelector((state) => state.comment.comments)
+    const likes = useSelector((state) => state.like.likes)
+    const currentUser = useSelector((state) => state.auth.currentUser)
 
-    
+    const [inputvalue,Setinputvalue] = useState('')
+    const [ModalSettings,SetModalSettings] = useState(0)
+    const [selectCommentForDelete,SetselectCommentForDelete] = useState()
+   
 
     const didMount = () =>{
         dispatch(getMyComments(post.id))
+        dispatch(getLikesOfPost(post.id))
     }
     
     useEffect(didMount,[])
+    console.log();
     const save = () =>{
         dispatch(CreateComment({
             description:inputvalue,
@@ -37,7 +42,7 @@ export default function SelectPost({post}){
         }))
         Setinputvalue('')
     }
-    
+    console.log(likes);
     return(
            <div className="main-window" >
             <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
@@ -145,7 +150,7 @@ export default function SelectPost({post}){
                                     <FontAwesomeIcon icon={faBookmark} className="iconselect iconbook"/>
                                 </div>
                             </div>
-                            <h3 className="likeOfPoST">5 likes</h3>
+                            <h3 className="likeOfPoST">{likes.length} likes</h3>
                             <h3>April 22</h3>
                         </div>
                         <div className="add-comment-to-input">
