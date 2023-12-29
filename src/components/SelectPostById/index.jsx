@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClose, faShare } from "@fortawesome/free-solid-svg-icons"
 import { faFaceSmile } from "@fortawesome/free-regular-svg-icons"
-import { faHeart } from "@fortawesome/free-solid-svg-icons"
+import { faHeart } from "@fortawesome/free-regular-svg-icons"
 import { faBookmark } from "@fortawesome/free-regular-svg-icons"
 import { faComment } from "@fortawesome/free-regular-svg-icons"
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons"
@@ -16,17 +16,16 @@ import { END_POINT } from "@/app/config/EndPoint"
 import { deletePost } from "@/app/store/slices/postSlice"
 import { CreateComment, deleteComment, getMyComments } from "@/app/store/slices/commentSlice"
 import { getMyStories } from "@/app/store/slices/StorySlice"
-import { getLikesOfPost } from "@/app/store/slices/LikeSlice"
+import { addLikeToPost, getLikesOfPost, removeLike } from "@/app/store/slices/LikeSlice"
 export default function SelectPost({post}){
     const dispatch = useDispatch()
     const comments = useSelector((state) => state.comment.comments)
     const likes = useSelector((state) => state.like.likes)
     const currentUser = useSelector((state) => state.auth.currentUser)
-
+    let [removeLikeid,SetremoveLikeid] = useState([])
     const [inputvalue,Setinputvalue] = useState('')
     const [ModalSettings,SetModalSettings] = useState(0)
     const [selectCommentForDelete,SetselectCommentForDelete] = useState()
-   
 
     const didMount = () =>{
         dispatch(getMyComments(post.id))
@@ -34,7 +33,9 @@ export default function SelectPost({post}){
     }
     
     useEffect(didMount,[])
-    console.log();
+
+
+
     const save = () =>{
         dispatch(CreateComment({
             description:inputvalue,
@@ -42,7 +43,21 @@ export default function SelectPost({post}){
         }))
         Setinputvalue('')
     }
-    console.log(likes);
+
+    useEffect(() => {
+        removeLikeid = likes.filter(item => item.userId === currentUser.id )
+        if(removeLikeid.length){
+            SetremoveLikeid(removeLikeid)
+        }
+    },[likes])
+    
+    const remove = () =>{
+        removeLikeid = likes.filter(item => item.userId === currentUser.id )
+        if(removeLikeid.length){
+            dispatch(removeLike(removeLikeid[0].id,post.id))
+            SetremoveLikeid([])
+        }
+    }
     return(
            <div className="main-window" >
             <FontAwesomeIcon icon={faClose} className="close" onClick={() => dispatch(ToEmptyPost())}/>
@@ -142,7 +157,9 @@ export default function SelectPost({post}){
                         <div className="add-comment">
                             <div className="options">
                                 <div className="left-options">
-                                <FontAwesomeIcon icon={faHeart} className="iconselect"/>
+                                    {removeLikeid.length}
+                                {removeLikeid.length === 0 && <FontAwesomeIcon icon={faHeart} className="iconselect" onClick={() => dispatch(addLikeToPost(post.id))}/>}
+                                {removeLikeid.length >= 1 && <FontAwesomeIcon icon={faHeart} className="iconselect heart" onClick={() => remove()}/>}
                                 <FontAwesomeIcon icon={faComment} className="iconselect"/>
                                 <FontAwesomeIcon icon={faPaperPlane} className="iconselect"/>
                                 </div>

@@ -141,6 +141,9 @@
     cursor: pointer;
     transition: .2s;
 }
+.heart{
+    color: red !important;
+}
 .iconbook{
     margin-right: 0;
 }

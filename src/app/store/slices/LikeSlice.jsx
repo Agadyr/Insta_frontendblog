@@ -35,24 +35,21 @@ export const getLikesOfPost = (id) => async(dispatch) =>{
 
 }
 
-export const CreateStory = (video) => async(dispatch) => {
+export const addLikeToPost = (id) => async(dispatch) => {
 
-    let fd = new FormData()
-    fd.append('video', video)
-
-    axios.post(`${END_POINT}/api/post/newStory`,fd)
+    axios.post(`${END_POINT}/api/like/add-like-to-post/${id}`)
     .then((response) => {;
-        dispatch(getMyStories())
+        dispatch(getLikesOfPost(id))
     }).catch((error) =>{
         console.log(error);
     })
 }
 
-export const deleteStory = (story) => async(dispatch) => {
+export const removeLike = (likeid,id) => async(dispatch) => {
     try {
-        const res = await axios.delete(`${END_POINT}/api/post/deleteStory/${story.id}`)
-        dispatch(handleDeletedStories(story.id))
-        dispatch(getMyStories())
+        const res = await axios.delete(`${END_POINT}/api/like/remove-like/${likeid}`)
+        dispatch(handleDeletedLikes(likeid))
+        dispatch(getLikesOfPost(id))
     } catch (error) {
         alert("что то пошло не так сообщите тех поддержке сайта")
     }
