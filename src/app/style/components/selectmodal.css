@@ -43,10 +43,15 @@
     padding: 12px;
     margin-top: 12px;
 }
+
 .main-section{
     padding: 12px;
     height:67%;
+    overflow-y:auto ;
 }
+.main-section::-webkit-scrollbar {
+    width: 0px; /* Ширина полосы прокрутки */
+  }
 .CommentOfUser{
     display: flex;
     justify-content: space-between;

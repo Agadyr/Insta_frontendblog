@@ -1,5 +1,5 @@
 .container{
-    max-width: 950px;
+    max-width: 850px;
     height: auto;    
     margin: 0 auto;
 }
@@ -13,7 +13,13 @@ textarea{
     outline: none;
     overflow-y: 100px;
 }
-
+.dn{
+    display: none;
+}
+.li{
+    border: none;
+    border: 1px solid #a9a8ab42;
+}
 .fz20{
     font-size: 24px;
 }
@@ -25,6 +31,9 @@ textarea{
 }
 .mt2{
     margin-top: 20px;
+}
+.prl{
+    padding: 0 15px;
 }
 .close-white{
     cursor: pointer;
@@ -63,4 +72,10 @@ textarea{
     height: 100vh;
     left: 0;
     top: 0;
+}
+.btn-silver{
+    background-color: #efefef;
+    color: #000;
+    font-weight: 500;
+    border: none;
 }

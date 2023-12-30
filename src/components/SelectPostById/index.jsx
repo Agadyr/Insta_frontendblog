@@ -136,6 +136,7 @@ export default function SelectPost({post}){
 
                             {comments.length > 0 && comments.map((item, index) => {
                             const timeAgo = formatDistanceToNow(new Date(item.updatedAt), { addSuffix: true })
+                            const ShowCommentLikeUser
                             return(
                                 <div className="CommentOfUser" key={index}>
                                     <img src="posts/4.png" id="imageprofile" alt="" />

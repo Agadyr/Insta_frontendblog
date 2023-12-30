@@ -34,8 +34,9 @@
     height: 30px;
 }
 #userphoto{
-    width:170px;
-    height: 170px;
+    margin-top: 20px;
+    width:140px;
+    height: 140px;
     border-radius: 50%;
 }
 
@@ -66,7 +67,7 @@
     gap: 20px;
 }
 .name h3{
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 350;
 }
 .follow-btn{
@@ -120,19 +121,16 @@ h2{
 }
 .posts-img{
     margin-top: 10px;
-    gap: 20px;
+    gap: 10px;
 }
 .posts-img h3{
     font-weight: 500;
     font-size: 12px;
 }
 
-.posts{
-    margin-top: 20px;
-    max-width: 100%;
-    max-height: 100%;
-}
 .posts-images{
+    margin-top: 20px;
+    margin-bottom: 50px;
     max-width: 100%;
     max-height: 100%;
     display: flex;
@@ -145,25 +143,31 @@ h2{
     height: 293px;
 }
 .post{
-    width: 32%;
-    margin-bottom: 20px;
+    max-width: 32.5%;
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 
 @media (max-width:933px) {
-    .posts-images{
+    .post-container{
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 10px), 1fr));
-        gap: 10px;
         margin: 0 auto;
     }
     .posts-images img{
         width: 100%;
-        max-height: 300px;
-        height: 100%;
+        height: 250px;
     }
 }
-@media (max-width:800px) {
+
+@media (max-width:750px) {
+    .posts-images img{
+        height: 220px;
+    }
+}
+
+
+@media (max-width:760px) {
     .header-search, .header-navigation{
         display: none;
     }
@@ -174,6 +178,7 @@ h2{
         margin-left: 15px;
     }
     .userprofilephoto{
+        display: flex;
         width: 100%;
     }
     .stateuser{
@@ -183,23 +188,72 @@ h2{
     .follow-btn{
         width: 100%;
     }
+    .foradaptive{
+        display: flex !important;
+        margin-left: 20px;
+    }
     .name{
         width: 100%;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        display: none;
     }
     .name h3{
         width: 100%;
     }
     #userphoto{
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
     }
     .posts-hr{
         width: 40%;
     }
     .line{
         margin-top: 10vh;
+    }
+    .footer{
+        display: none;
+    }
+    .nav-states{
+        display: flex !important;
+    
+    }
+    .li{
+        display: flex !important;
+    }
+    .states{
+        display: none;
+        text-align:  center;
+    }
+    .nav-state{
+        text-align: center;
+    }
+    .states-item{
+        margin: 0;
+    }
+    .bio h2{
+        margin-top: 15px;
+    }
+
+}
+@media (max-width:700px) {
+    .posts-images img{
+        height: 190px;
+    }
+}
+@media (max-width:620px) {
+    .posts-images img{
+        height: 190px;
+    }
+}
+@media (max-width:520px) {
+    .posts-images img{
+        height: 140px;
+    }
+}
+@media (max-width:400px) {
+    .posts-images img{
+        height: 120px;
     }
 }

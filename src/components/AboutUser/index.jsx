@@ -22,16 +22,23 @@ export default function AboutUser({Setmodalwindows}){
                 <div className="aboutuser df aic">
                     <div className="userprofilephoto">
                         <img src='/posts/1.png' alt="Not found" id="userphoto" />
-                    </div>
-                    <div className="stateuser">
-                        <div className="name df ">
+                        <div className="name df aic dn foradaptive">
                             {current_user && <h3>{current_user.full_name}</h3>}
                             <div className="follow-btn df">
-                                <button className="btn btn-f">Follow</button>
-                                <button className="More-setting"><img src="/icons/More.png" alt="" /></button>
+                                <button className="btn-silver btn-f">Edit Profile</button>
+                                <button className="btn-silver btn-f">View Archive</button>
                             </div>
                         </div>
-                        <div className="states df">
+                    </div>
+                    <div className="stateuser">
+                        <div className="name df aic">
+                            {current_user && <h3>{current_user.full_name}</h3>}
+                            <div className="follow-btn df">
+                                <button className="btn-silver btn-f">Edit Profile</button>
+                                <button className="btn-silver btn-f">View Archive</button>
+                            </div>
+                        </div>
+                        <div className="states df ">
                             <div className="states-item df"><h2>{posts.length} </h2>posts</div>
                             <div className="states-item df" onClick={() => Setmodalwindows(4)}><h2>7</h2>followers</div>
                             <div className="states-item df" onClick={() => Setmodalwindows(5)}><h2> 5</h2>following</div>
@@ -54,8 +61,14 @@ export default function AboutUser({Setmodalwindows}){
                         </div>))}
                     </div>
                 </div>
+                <hr className="li dn"/>
+                <div className="df  aic nav-states dn">
+                    <div className="states-item nav-state"><h2>{posts.length} </h2>posts</div>
+                    <div className="states-item nav-state" onClick={() => Setmodalwindows(4)}><h2>7</h2>followers</div>
+                    <div className="states-item nav-state" onClick={() => Setmodalwindows(5)}><h2> 5</h2>following</div>
+                </div>
                 <div className="posts">
-                    <hr className="li className='UserStories'ne"/>
+                    <hr className="li"/>
                     <div className="posts-hr">
                         <div className="posts-img df">
                             <img src="/icons/icon.svg" alt="" />

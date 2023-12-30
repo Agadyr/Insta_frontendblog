@@ -19,6 +19,7 @@ export default function AddComment({selectPostId,SetselectPostId}){
     const [inputvalue,Setinputvalue] = useState('')
     const [ModalSettings,SetModalSettings] = useState(0)
     const [selectCommentForDelete,SetselectCommentForDelete] = useState()
+    const [full_name,Setfull_name] = useState('')
     const comments = useSelector((state) => state.comment.comments)
     
     const didMount = () =>{
@@ -40,10 +41,10 @@ export default function AddComment({selectPostId,SetselectPostId}){
             <div className="remove-modal">
                 <div className="rm-buttons">
                     <button className="removes">Report</button>
-                    <button className="removes"  onClick={() => {
-                        dispatch(deleteComment(selectCommentForDelete,selectPostId.id))
+                    {selectCommentForDelete.User.full_name == currentUser.full_name && <button className="removes"  onClick={() => {
+                        dispatch(deleteComment(selectCommentForDelete.id,selectPostId.id))
                         SetModalSettings(0)
-                        }}>Delete Comment</button>
+                        }}>Delete Comment</button>}
                     <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
@@ -92,7 +93,7 @@ export default function AddComment({selectPostId,SetselectPostId}){
                                             <div className="df aic settings-comment">
                                                 <p className="time-ago">{timeAgo}</p>
                                                 <h4>Reply</h4>
-                                                {item.User.full_name == currentUser.full_name && <button className="More" onClick={() => {SetModalSettings(1);SetselectCommentForDelete(item.id)}} ><img src="/icons/More.png" alt="" /></button>}
+                                                <button className="More" onClick={() => {SetModalSettings(1);SetselectCommentForDelete(item)}} ><img src="/icons/More.png" alt="" /></button>
                                             </div>
                                         <div>
                                     </div>

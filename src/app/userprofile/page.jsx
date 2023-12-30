@@ -130,7 +130,7 @@ export default function UserProfile(){
     useEffect(onSelectPost,[])
 
     return(
-        <div>
+        <div className="">
             <Header Setmodalwindows={SetStepOfModalWindow}/>
             {StepOfModalWindow == 3 &&  
                 <ModalWindow closeModal={closeModal} onSelect={onSelect}/>}
