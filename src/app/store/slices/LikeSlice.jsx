@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { END_POINT } from "@/app/config/EndPoint";
+import { getMyComments } from "./commentSlice";
+
 
 export const LikeSlice = createSlice({
     name:"like",
@@ -15,14 +17,6 @@ export const LikeSlice = createSlice({
             let likes = [...state.likes]
             likes = likes.filter(item => item.id !== action.payload)
         },
-
-        setMyCommentLikes:(state,action) => {
-            state.commentLikes = action.payload.commentLikes
-        },
-        handleDeletedCoomentLikes:(state,action) => {
-            let commentLikes = [...state.commentLikes]
-            commentLikes = commentLikes.filter(item => item.id !== action.payload)
-        }
 
     }
 })
@@ -50,27 +44,30 @@ export const addLikeToPost = (id) => async(dispatch) => {
     })
 }
 
-export const removeLike = (likeid,id) => async(dispatch) => {
+export const removeLike = (likeid,postid) => async(dispatch) => {
     try {
         const res = await axios.delete(`${END_POINT}/api/like/remove-like/${likeid}`)
-        dispatch(handleDeletedLikes(likeid))
-        dispatch(getLikesOfPost(id))
+        dispatch(getLikesOfPost(postid))
+    } catch (error) {
+        alert("что то пошло не так сообщите тех поддержке сайта")
+    }
+}
+
+export const removeCommentLikeBack = (likeid,postid) => async(dispatch) => {
+    try {
+        const res = await axios.delete(`${END_POINT}/api/like/remove-like/${likeid}`)
+        dispatch(getMyComments(postid))
     } catch (error) {
         alert("что то пошло не так сообщите тех поддержке сайта")
     }
 }
 
 
+export const addLikeToComment = (id,postid) => async(dispatch) => {
 
-
-
-
-
-export const addLikeToComment = (id) => async(dispatch) => {
-
-    axios.post(`${END_POINT}/api/like/add-like-to-post/${id}`)
+    axios.post(`${END_POINT}/api/like/add-like-to-comment/${id}`)
     .then((response) => {;
-        dispatch(getLikesOfPost(id))
+        dispatch(getMyComments(postid))
     }).catch((error) =>{
         console.log(error);
     })

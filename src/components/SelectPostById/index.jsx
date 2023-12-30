@@ -15,7 +15,7 @@ import { ToEmptyPost } from "@/app/store/slices/postSlice"
 import { END_POINT } from "@/app/config/EndPoint"
 import { deletePost } from "@/app/store/slices/postSlice"
 import { CreateComment, deleteComment, getMyComments } from "@/app/store/slices/commentSlice"
-import { addLikeToPost, getLikesOfPost, removeLike } from "@/app/store/slices/LikeSlice"
+import { addLikeToPost, getLikesOfPost, removeLike,addLikeToComment,removeCommentLikeBack } from "@/app/store/slices/LikeSlice"
 export default function SelectPost({post}){
     const dispatch = useDispatch()
     const comments = useSelector((state) => state.comment.comments)
@@ -63,6 +63,11 @@ export default function SelectPost({post}){
     }
 
 
+    const removeCommentLike = (id) => {
+        dispatch(removeCommentLikeBack(id,post.id))
+    }
+
+
 
     return(
            <div className="main-window" >
@@ -102,8 +107,6 @@ export default function SelectPost({post}){
                     <button className="removes" onClick={() => SetModalSettings(0)}>Cansel</button>
                 </div>
             </div>}
-
-
                 <div className="Modal-select-window">
                     <div className="left-modal-window">
                     <img src={`${END_POINT}${post.image}`} alt="" />
@@ -136,7 +139,9 @@ export default function SelectPost({post}){
 
                             {comments.length > 0 && comments.map((item, index) => {
                             const timeAgo = formatDistanceToNow(new Date(item.updatedAt), { addSuffix: true })
-                            const ShowCommentLikeUser
+
+                            const ShowCommentLikeUser = item.Likes.filter(likes => likes.userId === currentUser.id)
+
                             return(
                                 <div className="CommentOfUser" key={index}>
                                     <img src="posts/4.png" id="imageprofile" alt="" />
@@ -155,7 +160,8 @@ export default function SelectPost({post}){
                                         </div>                                        
                                     </div>
                                     <div className="select-comment">
-                                        <FontAwesomeIcon icon={faHeart} className="icon fa-heart-h" />
+                                        {ShowCommentLikeUser.length === 0 && <FontAwesomeIcon icon={faHeart} className="iconselect" onClick={() => dispatch(addLikeToComment(item.id,post.id))}/>}
+                                        {ShowCommentLikeUser.length >= 1 && <FontAwesomeIcon icon={faHeart} className="iconselect heart" onClick={() => removeCommentLike(item.Likes[0].id)}/>}
                                     </div>
                                 </div>)
                             })}
