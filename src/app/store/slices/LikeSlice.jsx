@@ -8,8 +8,12 @@ export const LikeSlice = createSlice({
     name:"like",
     initialState:{
         likes:[],
+        storylikes:[]
     },
     reducers:{
+        setMyStoryLikes:(state,action) => {
+            state.storylikes = action.payload.storylikes
+        },
         setMyLikes:(state,action) => {
             state.likes = action.payload.likes
         },
@@ -20,7 +24,7 @@ export const LikeSlice = createSlice({
 
     }
 })
-export const {setMyLikes,handleDeletedLikes,setMyCommentLikes,handleDeletedCoomentLikes,uppendMyComments} = LikeSlice.actions
+export const {setMyLikes,handleDeletedLikes,setMyCommentLikes,handleDeletedCoomentLikes,setMyStoryLikes} = LikeSlice.actions
 
 
 
@@ -63,6 +67,7 @@ export const removeCommentLikeBack = (likeid,postid) => async(dispatch) => {
 }
 
 
+
 export const addLikeToComment = (id,postid) => async(dispatch) => {
 
     axios.post(`${END_POINT}/api/like/add-like-to-comment/${id}`)
@@ -74,6 +79,34 @@ export const addLikeToComment = (id,postid) => async(dispatch) => {
 }
 
 
+export const getLikesOfStory = (id) => async(dispatch) =>{
+    try {
+        const res = await axios.get(`${END_POINT}/api/like/get-likes-by-story/${id}`)
+        dispatch(setMyStoryLikes({storylikes:res.data}))
+    } catch (error) {
+        alert("Ошибка при запросе пожалуйста сообщите об ошибке")
+    }
 
+}
+
+
+export const addLikeToStory = (id) => async (dispatch) => {
+
+    axios.post(`${END_POINT}/api/like/add-like-to-story/${id}`)
+    .then((response) => {
+        dispatch(getLikesOfStory(id))
+    }).catch((error) =>{
+        console.log(error);
+    })
+}
+
+export const removeStoryLike = (likeid,storyid) => async(dispatch) => {
+    try {
+        const res = await axios.delete(`${END_POINT}/api/like/remove-like/${likeid}`)
+        dispatch(getLikesOfStory(storyid))
+    } catch (error) {
+        alert("что то пошло не так сообщите тех поддержке сайта")
+    }
+}
 
 export default LikeSlice.reducer

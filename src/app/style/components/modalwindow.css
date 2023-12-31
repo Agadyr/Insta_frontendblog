@@ -112,11 +112,12 @@
 
 }
 .image-from-modal img{
-    height: calc(100% - 54px);
+    max-height: calc(100% - 54px);
+    height: 100%;
     width: 100%;
     object-fit: cover;
     box-sizing: border-box;
-    border-radius: 0 0 0 15px;
+    border-radius: 0 0 15px 15px !important;
 }
 .close{
     position: absolute;

@@ -12,14 +12,44 @@ import { faVolumeXmark } from "@fortawesome/free-solid-svg-icons"
 import { END_POINT } from "@/app/config/EndPoint"
 import { useSelector,useDispatch } from "react-redux"
 import { deleteStory } from "@/app/store/slices/StorySlice"
+import { addLikeToStory, getLikesOfStory, removeStoryLike } from "@/app/store/slices/LikeSlice"
 export default function ShowStoryOfUser({SelectStory,SetSelectStory}){
     const [play,SetPlay] = useState(0)
     const [sound,SetSound] = useState(0)
     const [IsVideo,SetIsVideo] = useState(0)
     const [modalSettings,SetModalSettings] = useState(0)
+    let [isLike,SetIslike]  = useState([])
+    const storylikes = useSelector(state => state.like.storylikes)
+
     const current_user = useSelector(state => state.auth.currentUser)
     const dispatch = useDispatch()
     const ref = useRef()
+
+
+    const didmount = () =>{
+        dispatch(getLikesOfStory(SelectStory.id))
+    }
+    useEffect(didmount,[])
+
+
+    useEffect(() => {
+        isLike = storylikes.filter(item => item.userId === current_user.id)
+        if(isLike.length){
+            SetIslike(isLike)
+        }
+    },[storylikes])
+
+    const remove = () => {
+        isLike = storylikes.filter(item => item.userId === current_user.id )
+
+        if(isLike.length){
+            dispatch(removeStoryLike(isLike[0].id,SelectStory.id))
+            SetIslike([])
+            
+        }
+    }
+
+
     useEffect(() => {
         let fileExtension = SelectStory.video.split('.').pop();
 
@@ -30,7 +60,7 @@ export default function ShowStoryOfUser({SelectStory,SetSelectStory}){
         }
     },[])
 
-        
+
     const handleTogglePlay = () => {
         if (ref.current.paused) {
             ref.current.play();
@@ -41,9 +71,7 @@ export default function ShowStoryOfUser({SelectStory,SetSelectStory}){
         SetSound(!sound);
     }
 
-        
-
-
+    
     return(
         <div className="story-modal-window">
             {modalSettings == 1 && 
@@ -84,7 +112,9 @@ export default function ShowStoryOfUser({SelectStory,SetSelectStory}){
                     </div>
                     <div className="SendMessage">
                         <input type="text" placeholder={"Reply to " + current_user.username} />
-                        <FontAwesomeIcon icon={faHeart} className="iconselect iconselectstory"/>
+                        {isLike.length === 0  && <FontAwesomeIcon icon={faHeart} className="iconselect iconselectstory" onClick={() => dispatch(addLikeToStory(SelectStory.id))}/>}
+                        {isLike.length >= 1 &&  <img onClick={() => remove()} className="iconselect iconselectstory heartpng" src="icons/heartfrom.png" alt=""/>}
+                        
                         <FontAwesomeIcon icon={faPaperPlane} className="iconselect iconselectstory"/>
                     </div>
                 </div>

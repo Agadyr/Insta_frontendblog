@@ -41,6 +41,11 @@ textarea{
 .z-i{
     z-index:10 ;
 }
+.gray-data{
+    font-size: 11px !important;
+    color: #999292;
+    font-weight: 400;
+}
 .white-logo{
     width: 102px;
     height: 28px;

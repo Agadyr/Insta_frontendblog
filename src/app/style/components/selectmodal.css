@@ -154,9 +154,18 @@
 }
 
 .likeOfPoST{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     margin: 12px 0 0 0;
+}
+.likeOfPoST span{
+    font-weight: 500;
+}
+.likeOfPoST span:hover{
+    transition: .1s;
+    font-weight: 500;
+    color: #d4cece;
+    cursor: pointer;
 }
 .add-comment h3:last-child{
     font-size: 12px;

@@ -22,7 +22,6 @@ export default function SelectPost({post}){
     const likes = useSelector((state) => state.like.likes)
     const currentUser = useSelector((state) => state.auth.currentUser)
 
-
     let [removeLikeid,SetremoveLikeid] = useState([])
     const [inputvalue,Setinputvalue] = useState('')
     const [ModalSettings,SetModalSettings] = useState(0)
@@ -180,8 +179,9 @@ export default function SelectPost({post}){
                                     <FontAwesomeIcon icon={faBookmark} className="iconselect iconbook"/>
                                 </div>
                             </div>
-                            <h3 className="likeOfPoST">{likes.length} likes</h3>
-                            <h3>April 22</h3>
+                            {removeLikeid.length >= 1 && <h3 className="likeOfPoST">Liked by {currentUser.full_name} and {likes.length - 1} others</h3>}
+                            {removeLikeid.length ==0 && <h3 className="likeOfPoST">Be the first to <span  onClick={() => dispatch(addLikeToPost(post.id))} >like this</span> </h3>}
+                            <h3 className="gray-data">April 22</h3>
                         </div>
                         <div className="add-comment-to-input">
                             <div className="input-container">

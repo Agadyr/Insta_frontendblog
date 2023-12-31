@@ -25,7 +25,7 @@ export default function AboutUser({Setmodalwindows}){
                         <div className="name df aic dn foradaptive">
                             {current_user && <h3>{current_user.full_name}</h3>}
                             <div className="follow-btn df">
-                                <button className="btn-silver btn-f">Edit Profile</button>
+                                <button onClick={() => Setmodalwindows(6)} className="btn-silver btn-f">Edit Profile</button>
                                 <button className="btn-silver btn-f">View Archive</button>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ export default function AboutUser({Setmodalwindows}){
                         <div className="name df aic">
                             {current_user && <h3>{current_user.full_name}</h3>}
                             <div className="follow-btn df">
-                                <button className="btn-silver btn-f">Edit Profile</button>
+                                <button onClick={() => Setmodalwindows(6)} className="btn-silver btn-f">Edit Profile</button>
                                 <button className="btn-silver btn-f">View Archive</button>
                             </div>
                         </div>

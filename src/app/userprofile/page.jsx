@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import User from "@/components/AboutUser";
 import Users from "@/components/users";
 import Header from "@/components/header";
+import EditUserSettings from "@/components/EditUserSettings";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyPosts, getPostByid } from "../store/slices/postSlice";
@@ -103,6 +104,8 @@ export default function UserProfile(){
 
     const [AllFollowers,SetAllFollowers] = useState(followers)
     const [AllFollowing,SetAllFollowing] = useState(following)
+    const [StepOfModalWindow,SetStepOfModalWindow] = useState(1)
+
     const Removefollower = (follower) =>{
         let Rm = [...AllFollowers]
         let index = AllFollowers.indexOf(follower)
@@ -115,7 +118,7 @@ export default function UserProfile(){
         Rm.splice(index,1)
         SetAllFollowing(Rm)
     }
-    const[StepOfModalWindow,SetStepOfModalWindow] = useState(1)
+   
     const closeModal = () => {
         SetStepOfModalWindow(1)
     };
@@ -128,7 +131,6 @@ export default function UserProfile(){
     }
     const post = useSelector((state) => state.post.post)
     useEffect(onSelectPost,[])
-
     return(
         <div className="">
             <Header Setmodalwindows={SetStepOfModalWindow}/>
@@ -138,7 +140,8 @@ export default function UserProfile(){
                 <SelectPostById post={post}  closeModal={closeModal} />}
             {(StepOfModalWindow == 5 || StepOfModalWindow == 4) && 
                 <Users closeModal={closeModal} followers={AllFollowers} following={AllFollowing} Removefollower={Removefollower} Setmodalwindows={StepOfModalWindow} Stopfollowing={Stopfollowing} />}
-            <User  Setmodalwindows={SetStepOfModalWindow}/>
+            {StepOfModalWindow == 6 && <EditUserSettings closeModal={closeModal} following={AllFollowing} Stopfollowing={Stopfollowing}/>}
+           <User   Setmodalwindows={SetStepOfModalWindow}/>
             <Posts posts={posts} onSelectPost={onSelectPost}/>
             <Footer/>
         </div>
